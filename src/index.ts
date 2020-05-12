@@ -1,3 +1,3 @@
-import { Player as LottiePlayer } from "./LottiePlayer/Player";
+import { Player as LottiePlayer } from './LottiePlayer/Player';
 
 export { LottiePlayer };
