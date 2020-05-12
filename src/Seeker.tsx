@@ -1,6 +1,7 @@
-import { styled } from "fannypack";
-import * as React from "react";
-import { useMousePosition } from "./useMousePosition";
+import * as React from 'react';
+import styled from 'styled-components';
+
+import { useMousePosition } from './useMousePosition';
 
 const SeekerContainer = styled.div`
   display: flex;
@@ -30,7 +31,7 @@ const LabelContainer = styled.div`
   font-size: 8px;
   font-weight: bold;
   user-select: none;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
 `;
 
 const TrackContainer = styled.div`
@@ -63,12 +64,6 @@ const MarkerContainer = styled.div`
   }
 `;
 
-const Marker = styled.div`
-  margin-top: -20px;
-  font-size: 10px;
-  user-select: none;
-`;
-
 const SliderBlob = styled.div`
   background: #009688;
   border-radius: 50%;
@@ -86,22 +81,14 @@ interface ILabelProps {
   visible?: boolean;
 }
 
-export const Label: React.FC<ILabelProps> = ({
-  children,
-  formatter,
-  style,
-  type,
-  visible
-}) => {
+export const Label: React.FC<ILabelProps> = ({ children, formatter, style, type, visible }) => {
   if (!visible) {
     return null;
   }
 
   return (
-    <LabelContainer
-      className={`seeker-label seeker-label-${type}`}
-      style={style}>
-      {typeof formatter === "function" ? formatter(children) : children}
+    <LabelContainer className={`seeker-label seeker-label-${type}`} style={style}>
+      {typeof formatter === 'function' ? formatter(children) : children}
     </LabelContainer>
   );
 };
@@ -123,17 +110,11 @@ interface ITrackProps {
   style?: any;
 }
 
-export const Track: React.FC<ITrackProps> = ({
-  children,
-  markers,
-  onDrag,
-  style,
-  trackDrag
-}) => {
+export const Track: React.FC<ITrackProps> = ({ children, markers, onDrag, style, trackDrag }) => {
   const trackElement = React.useRef<any>();
   const position = useMousePosition(trackElement);
 
-  const handleMouseMove = (event: any) => {
+  const handleMouseMove = () => {
     if (trackDrag) {
       const rect = trackElement.current.getBoundingClientRect();
       onDrag((position.x - rect.left) / rect.width);
@@ -141,29 +122,25 @@ export const Track: React.FC<ITrackProps> = ({
   };
 
   return (
-    <TrackContainer
-      style={style}
-      onMouseMove={handleMouseMove}
-      ref={trackElement}>
+    <TrackContainer style={style} onMouseMove={handleMouseMove} ref={trackElement}>
       {markers &&
-        markers.map((marker, i) => {
-          const left = `calc(${marker.percentage * 100}% - ${Math.round(
-            marker.width / 2
-          )}px)`;
+        markers.map(marker => {
+          const left = `calc(${marker.percentage * 100}% - ${Math.round(marker.width / 2)}px)`;
           return (
             <MarkerContainer
               key={marker.percentage}
               className={marker.class}
               id={marker.id}
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation();
                 marker.onClick(marker);
               }}
               style={{
                 left,
-                position: "absolute",
-                textAlign: "center"
-              }}>
+                position: 'absolute',
+                textAlign: 'center',
+              }}
+            >
               {marker.content}
             </MarkerContainer>
           );
@@ -192,7 +169,7 @@ const Slider: React.FC<ISliderProps> = ({
   onMouseUp,
   percentage,
   style,
-  width
+  width,
 }) => {
   const left = `calc(${percentage * 100}% - ${Math.round(width / 2)}px)`;
 
@@ -206,9 +183,10 @@ const Slider: React.FC<ISliderProps> = ({
       style={{
         ...style,
         left,
-        position: "absolute",
-        textAlign: "center"
-      }}>
+        position: 'absolute',
+        textAlign: 'center',
+      }}
+    >
       {children}
     </SliderBlob>
   );
@@ -220,8 +198,8 @@ interface ISeekerProps {
   max: number;
   min: number;
   onChange: (e: any) => void;
-  onChangeStart: (v: number) => void;
-  onChangeEnd: (v: number) => void;
+  onChangeStart?: (v: number) => void;
+  onChangeEnd?: (v: number) => void;
   showMaxLabel?: boolean;
   showMinLabel?: boolean;
   step: number;
@@ -233,11 +211,9 @@ export const Seeker: React.FC<ISeekerProps> = ({
   max,
   min,
   onChange,
-  onChangeStart,
-  onChangeEnd,
   showMaxLabel,
   showMinLabel,
-  value
+  value,
 }) => {
   const [isDragging, setDragging] = React.useState(false);
   const [activeValue, setActiveValue] = React.useState(0);
@@ -271,11 +247,7 @@ export const Seeker: React.FC<ISeekerProps> = ({
   return (
     <SeekerContainer className={className}>
       <Track onDrag={change} markers={markers} trackDrag={isDragging}>
-        <Slider
-          onMouseDown={changeStart}
-          onMouseUp={changeEnd}
-          percentage={percentage}
-          width={10}>
+        <Slider onMouseDown={changeStart} onMouseUp={changeEnd} percentage={percentage} width={10}>
           {/* <Marker>{value}</Marker> */}
         </Slider>
       </Track>
@@ -295,5 +267,5 @@ export const Seeker: React.FC<ISeekerProps> = ({
 Seeker.defaultProps = {
   showMaxLabel: true,
   showMinLabel: true,
-  step: 1
+  step: 1,
 };
