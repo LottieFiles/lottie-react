@@ -1,0 +1,19 @@
+# IDE
+.vscode
+.idea
+.history
+
+# CI/CD
+.travis.yml
+
+# Source code
+src
+
+# Configs
+jest.config.js
+rollup.config.js
+tsconfig.json
+
+# Docs
+docs/
+examples/

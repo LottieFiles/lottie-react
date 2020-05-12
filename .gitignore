@@ -1,0 +1,49 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# node-waf configuration
+.lock-wscript
+
+# Dependency directories
+node_modules/
+
+# Force Karam to not add package-lock.json
+package-lock.json
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+*.env
+
+# IDEs
+**/.idea
+**/.vscode
+**/.history
+
+# Operating system
+.DS_Store
+.tmp
+
+# Dist artifacts
+dist/
+
+# Tests
+coverage/
