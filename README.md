@@ -34,11 +34,11 @@ Add the element `LottiePlayer` and set the `src` property to a URL pointing to a
 
 ```javascript
 <LottiePlayer
-	autoplay={true}
-	controls={true}
-	loop={true}
-	src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
-	style={{ height: '300px', width: '300px' }}
+  autoplay={true}
+  controls={true}
+  loop={true}
+  src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
+  style={{ height: '300px', width: '300px' }}
 ></LottiePlayer>
 ```
 
@@ -57,38 +57,48 @@ Add the element `LottiePlayer` and set the `src` property to a URL pointing to a
 | `style`            | `style`      | The style for the container.        | `object`           | `undefined` |
 | `src` _(required)_ | `src`        | Bodymovin JSON data or URL to JSON. | `string`           | `undefined` |
 
-## Get Lottie instance
+## Get Player instance
 
-The lottieRef prop returns the Lottie instance which you can use to set data and call methods as described in the bodymovin documentation.
+To call methods on the instance of the Player component. you may get a reference to the component and call the methods
+on ref.current. This is esentially reacts way of doing a document.getElementById();
 
 ```javascript
+// use effect allows us to check if the reference is null on re render. see react docs.
+useEffect(() => {
+  ref.current.play(); // an example of calling a method by using the reference to the component
+}, [ref.current]); // condition to null check the reference to the component
+
 <LottiePlayer
-	lottieRef={(instance: any) => {
-		// do something with the instance object (reccomend setting to your state)
-	}}
-	autoplay={true}
-	controls={true}
-	loop={true}
-	src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
-	style={{ height: '300px', width: '300px' }}
-></LottiePlayer>
+  ref={ref}
+  autoplay={true}
+  controls={true}
+  loop={true}
+  src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
+  style={{ height: '300px', width: '300px' }}
+></LottiePlayer>;
+```
+
+## Get Lottie instance
+
+The lottieRef prop returns the Lottie instance which you can use to set data and call methods as described in the
+bodymovin documentation.
+
+```javascript
+const [lottie, setLottie] = useState(null); // set a variable to your components state.
+
+<LottiePlayer
+  lottieRef={instance => {
+    setLottie(instance); // use a callback function and utilize the lottieRef prop to grab the instance to the lottie object
+  }}
+  autoplay={true}
+  controls={true}
+  loop={true}
+  src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
+  style={{ height: '300px', width: '300px' }}
+></LottiePlayer>;
 ```
 
 ## Methods
-
-### `load(src: string | object) => void`
-
-Load (and play) a given Bodymovin animation.
-
-#### Parameters
-
-| Name  | Type                 | Description                                                    |
-| ----- | -------------------- | -------------------------------------------------------------- |
-| `src` | `string` or `object` | URL, or a JSON string or object representing a Bodymovin JSON. |
-
-#### Returns
-
-Type: `void`
 
 ### `pause() => void`
 
@@ -106,7 +116,7 @@ Start playing animation.
 
 Type: `void`
 
-### `setDirection(value: number) => void`
+### `setPlayerDirection(value: number) => void`
 
 Animation play direction.
 
@@ -120,21 +130,7 @@ Animation play direction.
 
 Type: `void`
 
-### `setLooping(value: boolean) => void`
-
-Sets the looping of the animation.
-
-#### Parameters
-
-| Name    | Type      | Description                                              |
-| ------- | --------- | -------------------------------------------------------- |
-| `value` | `boolean` | Whether to enable looping. Boolean true enables looping. |
-
-#### Returns
-
-Type: `void`
-
-### `setSpeed(value?: number) => void`
+### `setPlayerSpeed(value?: number) => void`
 
 Sets animation play speed.
 
@@ -156,42 +152,9 @@ Stops animation play.
 
 Type: `void`
 
-### `seek(value: number | string) => void`
+### `setSeeker(value: number | string) => void`
 
 Seek to a given frame. Frame value can be a number or a percent string (e.g. 50%).
-
-#### Returns
-
-Type: `void`
-
-### `snapshot(download?: boolean) => string`
-
-Snapshot the current frame as SVG.
-If 'download' argument is boolean true, then a download is triggered in browser.
-
-#### Returns
-
-Type: `string`
-
-### `toggleLooping() => void`
-
-Toggles animation looping.
-
-#### Returns
-
-Type: `void`
-
-### `togglePlay() => void`
-
-Toggle playing state.
-
-#### Returns
-
-Type: `void`
-
-### `resize() => void`
-
-Resize animation stage and elements in response to changes in component.
 
 #### Returns
 
@@ -213,18 +176,6 @@ The following events are exposed and can be listened to via `addEventListener` c
 | `loop`     | An animation loop is completed.                                           |
 | `complete` | Animation is complete (all loops completed).                              |
 | `frame`    | A new frame is entered.                                                   |
-
-## Styling
-
-| Custom property                           | Description               | Default                |
-| ----------------------------------------- | ------------------------- | ---------------------- |
-| --lottie-player-toolbar-height            | Toolbar height            | 35px                   |
-| --lottie-player-toolbar-background-color  | Toolbar background color  | transparent            |
-| --lottie-player-toolbar-icon-color        | Toolbar icon color        | #999                   |
-| --lottie-player-toolbar-icon-hover-color  | Toolbar icon hover color  | #222                   |
-| --lottie-player-toolbar-icon-active-color | Toolbar icon active color | #555                   |
-| --lottie-player-seeker-track-color        | Seeker track color        | #CCC                   |
-| --lottie-player-seeker-thumb-color        | Seeker thumb color        | rgba(0, 107, 120, 0.8) |
 
 ## License
 
