@@ -30,8 +30,10 @@
     "typescript": "^3.5.3"
   },
   "peerDependencies": {
-    "lottie-web": "^5.6.10",
-    "react": "^16.8.6"
+    "@types/styled-components": "^5.1.0",
+    "lottie-web": "^5.6.0",
+    "react": "^16.8.6",
+    "styled-components": "^5.1.0"
   },
   "dependencies": {
     "@types/styled-components": "^5.1.0",
