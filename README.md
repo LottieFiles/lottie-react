@@ -23,23 +23,23 @@ npm install --save @lottiefiles/lottie-react
 2. Import package in your code.
 
 ```javascript
-import { LottiePlayer } from '@lottiefiles/lottie-react';
+import { Player } from '@lottiefiles/lottie-react';
 ```
 
 ## Usage
 
-### Lottie-Player
+### Player component
 
-Add the element `LottiePlayer` and set the `src` property to a URL pointing to a valid Lottie JSON.
+Add the element `Player` and set the `src` property to a URL pointing to a valid Lottie JSON.
 
 ```javascript
-<LottiePlayer
+<Player
   autoplay={true}
   controls={true}
   loop={true}
   src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
   style={{ height: '300px', width: '300px' }}
-></LottiePlayer>
+></Player>
 ```
 
 ## Properties
@@ -68,14 +68,14 @@ useEffect(() => {
   ref.current.play(); // an example of calling a method by using the reference to the component
 }, [ref.current]); // condition to null check the reference to the component
 
-<LottiePlayer
+<Player
   ref={ref}
   autoplay={true}
   controls={true}
   loop={true}
   src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
   style={{ height: '300px', width: '300px' }}
-></LottiePlayer>;
+></Player>;
 ```
 
 ## Get Lottie instance
