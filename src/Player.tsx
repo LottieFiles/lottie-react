@@ -1,4 +1,4 @@
-import lottie, { AnimationConfig, AnimationItem } from 'lottie-web';
+import lottie, { AnimationConfig, AnimationItem } from 'lottie-web/build/player/lottie_svg';
 import * as React from 'react';
 
 /**
@@ -63,7 +63,7 @@ export interface IPlayerProps {
   direction?: PlayerDirection;
   hover?: boolean;
   loop?: boolean | number;
-  renderer?: 'svg' | 'canvas';
+  renderer?: 'svg' | 'canvas' | 'html';
   speed?: number;
   src: string;
   style?: { [key: string]: string | number };
@@ -224,25 +224,21 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
         this.triggerEvent(PlayerEvent.Frame);
 
         this.setState({
-          // @ts-ignore
-          seeker: Math.floor(newInstance.currentFrame),
+          seeker: Math.floor((newInstance as any).currentFrame),
         });
       });
 
       // Handle lottie-web ready event
-      // @ts-ignore
       newInstance.addEventListener('DOMLoaded', () => {
         this.triggerEvent(PlayerEvent.Load);
       });
 
       // Handle animation data load complete
-      // @ts-ignore
       newInstance.addEventListener('data_ready', () => {
         this.triggerEvent(PlayerEvent.Ready);
       });
 
       // Set error state when animation load fail event triggers
-      // @ts-ignore
       newInstance.addEventListener('data_failed', () => {
         this.setState({ playerState: PlayerState.Error });
       });
@@ -321,7 +317,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
     }
   }
 
-  private setSeeker(seek: number, play: boolean = false) {
+  private setSeeker(seek: number, play = false) {
     const { instance, playerState } = this.state;
 
     if (instance) {

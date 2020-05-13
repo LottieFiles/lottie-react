@@ -1,5 +1,6 @@
-import { styled } from 'fannypack';
 import * as React from 'react';
+import styled from 'styled-components';
+
 import { useMousePosition } from './useMousePosition';
 
 const SeekerContainer = styled.div`
@@ -63,12 +64,6 @@ const MarkerContainer = styled.div`
   }
 `;
 
-const Marker = styled.div`
-  margin-top: -20px;
-  font-size: 10px;
-  user-select: none;
-`;
-
 const SliderBlob = styled.div`
   background: #009688;
   border-radius: 50%;
@@ -119,7 +114,7 @@ export const Track: React.FC<ITrackProps> = ({ children, markers, onDrag, style,
   const trackElement = React.useRef<any>();
   const position = useMousePosition(trackElement);
 
-  const handleMouseMove = (event: any) => {
+  const handleMouseMove = () => {
     if (trackDrag) {
       const rect = trackElement.current.getBoundingClientRect();
       onDrag((position.x - rect.left) / rect.width);
@@ -129,7 +124,7 @@ export const Track: React.FC<ITrackProps> = ({ children, markers, onDrag, style,
   return (
     <TrackContainer style={style} onMouseMove={handleMouseMove} ref={trackElement}>
       {markers &&
-        markers.map((marker, i) => {
+        markers.map(marker => {
           const left = `calc(${marker.percentage * 100}% - ${Math.round(marker.width / 2)}px)`;
           return (
             <MarkerContainer
@@ -203,8 +198,8 @@ interface ISeekerProps {
   max: number;
   min: number;
   onChange: (e: any) => void;
-  onChangeStart: (v: number) => void;
-  onChangeEnd: (v: number) => void;
+  onChangeStart?: (v: number) => void;
+  onChangeEnd?: (v: number) => void;
   showMaxLabel?: boolean;
   showMinLabel?: boolean;
   step: number;
@@ -216,8 +211,6 @@ export const Seeker: React.FC<ISeekerProps> = ({
   max,
   min,
   onChange,
-  onChangeStart,
-  onChangeEnd,
   showMaxLabel,
   showMinLabel,
   value,

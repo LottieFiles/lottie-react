@@ -1,5 +1,5 @@
-import { styled } from 'fannypack';
 import * as React from 'react';
+import styled from 'styled-components';
 
 const LabelContainer = styled.div``;
 

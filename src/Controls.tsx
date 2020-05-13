@@ -1,6 +1,5 @@
-import { styled } from 'fannypack';
-import { AnimationItem } from 'lottie-web';
 import * as React from 'react';
+import styled from 'styled-components';
 
 import { PlayerState } from './Player';
 import { Seeker } from './Seeker';
@@ -36,22 +35,7 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
   }
 
   public render() {
-    const {
-      instance,
-      loop,
-      playerState,
-      seeker,
-      setLoop,
-      setSeeker,
-      play,
-      pause,
-      stop,
-      visible,
-      buttons,
-      debug,
-      toggleDebug,
-    } = this.props;
-    const { activeFrame, mouseDown } = this.state;
+    const { instance, loop, playerState, seeker, setLoop, setSeeker, play, pause, stop, visible, buttons } = this.props;
 
     // Render nothing if lottie instance is not available
     if (!instance) {
@@ -66,7 +50,6 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
     const showPlayButton = !buttons || buttons.includes('play');
     const showStopButton = !buttons || buttons.includes('stop');
     const showRepeatButton = !buttons || buttons.includes('repeat');
-    const showDebugButton = !buttons || buttons.includes('debug');
 
     return (
       <div
@@ -125,11 +108,6 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
                 setSeeker(newFrame, false);
               });
             }
-          }}
-          onChangeStart={(v: any) => {
-            // this.setState({
-            //   mouseDown: true
-            // })
           }}
           onChangeEnd={(newFrame: any) => {
             if (setSeeker) {
