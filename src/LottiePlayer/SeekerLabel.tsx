@@ -1,9 +1,7 @@
 import { styled } from 'fannypack';
 import * as React from 'react';
 
-const LabelContainer = styled.div`
-
-`;
+const LabelContainer = styled.div``;
 
 interface ILabelProps {
   children: React.ReactNode;
@@ -14,7 +12,7 @@ interface ILabelProps {
 }
 
 export const SeekerLabel: React.FC<ILabelProps> = ({ children, formatLabel, style, type, visible }) => {
-  const displayText = (typeof formatLabel ==='function') ? formatLabel(children) : children;
+  const displayText = typeof formatLabel === 'function' ? formatLabel(children) : children;
 
   if (!visible) {
     return null;
@@ -25,4 +23,4 @@ export const SeekerLabel: React.FC<ILabelProps> = ({ children, formatLabel, styl
       {displayText}
     </LabelContainer>
   );
-}
+};

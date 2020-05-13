@@ -1,11 +1,11 @@
-import lottie, { AnimationConfig, AnimationItem } from "lottie-web";
-import * as React from "react";
+import lottie, { AnimationConfig, AnimationItem } from 'lottie-web';
+import * as React from 'react';
 
 /**
  * Parse a resource into a JSON object or a URL string
  */
 export function parseSrc(src: string | object): string | object {
-  if (typeof src === "object") {
+  if (typeof src === 'object') {
     return src;
   }
 
@@ -27,26 +27,26 @@ export function parseSrc(src: string | object): string | object {
 
 // Define valid player states
 export enum PlayerState {
-  Loading = "loading",
-  Playing = "playing",
-  Paused = "paused",
-  Stopped = "stopped",
-  Frozen = "frozen",
-  Error = "error"
+  Loading = 'loading',
+  Playing = 'playing',
+  Paused = 'paused',
+  Stopped = 'stopped',
+  Frozen = 'frozen',
+  Error = 'error',
 }
 
 // Define player events
 export enum PlayerEvent {
-  Load = "load",
-  Error = "error",
-  Ready = "ready",
-  Play = "play",
-  Pause = "pause",
-  Stop = "stop",
-  Freeze = "freeze",
-  Loop = "loop",
-  Complete = "complete",
-  Frame = "frame"
+  Load = 'load',
+  Error = 'error',
+  Ready = 'ready',
+  Play = 'play',
+  Pause = 'pause',
+  Stop = 'stop',
+  Freeze = 'freeze',
+  Loop = 'loop',
+  Complete = 'complete',
+  Frame = 'frame',
 }
 
 export type PlayerDirection = -1 | 1;
@@ -63,7 +63,7 @@ export interface IPlayerProps {
   direction?: PlayerDirection;
   hover?: boolean;
   loop?: boolean | number;
-  renderer?: "svg" | "canvas";
+  renderer?: 'svg' | 'canvas';
   speed?: number;
   src: string;
   style?: { [key: string]: string | number };
@@ -84,8 +84,8 @@ const defaultOptions: Partial<AnimationConfig> = {
   rendererSettings: {
     clearCanvas: false,
     hideOnTransparent: true,
-    progressiveLoad: true
-  }
+    progressiveLoad: true,
+  },
 };
 
 export class Player extends React.Component<IPlayerProps, IPlayerState> {
@@ -104,12 +104,12 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
 
     this.state = {
       animationData: null,
-      background: "transparent",
+      background: 'transparent',
       containerRef: React.createRef(),
       debug: true,
       instance: null,
       playerState: PlayerState.Loading,
-      seeker: 1
+      seeker: 1,
     };
   }
 
@@ -134,29 +134,22 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
 
   public render() {
     const { children, loop, style, onBackgroundChange } = this.props;
-    const {
-      animationData,
-      instance,
-      playerState,
-      seeker,
-      debug,
-      background
-    } = this.state;
+    const { animationData, instance, playerState, seeker, debug, background } = this.state;
 
     return (
       <>
         <div
           id="lottie"
-          ref={(el) => (this.container = el)}
+          ref={el => (this.container = el)}
           style={{
             background,
-            margin: "0 auto",
-            outline: "none",
-            overflow: "hidden",
-            ...style
+            margin: '0 auto',
+            outline: 'none',
+            overflow: 'hidden',
+            ...style,
           }}
         />
-        {React.Children.map(children, (child) => {
+        {React.Children.map(children, child => {
           if (React.isValidElement(child)) {
             return React.cloneElement(child, {
               animationData,
@@ -171,13 +164,13 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
               setBackground: (value: string) => {
                 this.setState({ background: value });
 
-                if (typeof onBackgroundChange === "function") {
+                if (typeof onBackgroundChange === 'function') {
                   onBackgroundChange(value);
                 }
               },
               setSeeker: (f: number, p: boolean) => this.setSeeker(f, p),
               stop: () => this.stop(),
-              toggleDebug: () => this.toggleDebug()
+              toggleDebug: () => this.toggleDebug(),
             });
           }
 
@@ -192,15 +185,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
   }
 
   private async createLottie() {
-    const {
-      autoplay,
-      direction,
-      loop,
-      lottieRef,
-      renderer,
-      speed,
-      src
-    } = this.props;
+    const { autoplay, direction, loop, lottieRef, renderer, speed, src } = this.props;
     const { instance } = this.state;
 
     if (!src || !this.container) {
@@ -212,7 +197,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
       // Parse the src to see if it is a URL or Lottie JSON data
       let animationData = parseSrc(src);
 
-      if (typeof animationData === "string") {
+      if (typeof animationData === 'string') {
         const fetchResult = await fetch(animationData as string);
         animationData = await fetchResult.json();
       }
@@ -229,36 +214,36 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
         autoplay: false,
         container: this.container as Element,
         loop: loop || true,
-        renderer
+        renderer,
       });
 
       this.setState({ animationData });
 
       // Handle new frame event
-      newInstance.addEventListener("enterFrame", () => {
+      newInstance.addEventListener('enterFrame', () => {
         this.triggerEvent(PlayerEvent.Frame);
 
         this.setState({
           // @ts-ignore
-          seeker: Math.floor(newInstance.currentFrame)
+          seeker: Math.floor(newInstance.currentFrame),
         });
       });
 
       // Handle lottie-web ready event
       // @ts-ignore
-      newInstance.addEventListener("DOMLoaded", () => {
+      newInstance.addEventListener('DOMLoaded', () => {
         this.triggerEvent(PlayerEvent.Load);
       });
 
       // Handle animation data load complete
       // @ts-ignore
-      newInstance.addEventListener("data_ready", () => {
+      newInstance.addEventListener('data_ready', () => {
         this.triggerEvent(PlayerEvent.Ready);
       });
 
       // Set error state when animation load fail event triggers
       // @ts-ignore
-      newInstance.addEventListener("data_failed", () => {
+      newInstance.addEventListener('data_failed', () => {
         this.setState({ playerState: PlayerState.Error });
       });
 
@@ -272,7 +257,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
       }
 
       this.setState({ instance: newInstance }, () => {
-        if (typeof lottieRef === "function") {
+        if (typeof lottieRef === 'function') {
           lottieRef(newInstance);
         }
         if (autoplay) {

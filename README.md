@@ -1,4 +1,4 @@
-## lottie-player Web Component
+## LottiePlayer React Component
 
 This is a React component for the Lottie Web Player
 
@@ -30,7 +30,7 @@ import { LottiePlayer } from '@lottiefiles/lottie-react';
 
 ### Lottie-Player
 
-Add the element `lottie-player` and set the `src` property to a URL pointing to a valid Bodymovin JSON.
+Add the element `LottiePlayer` and set the `src` property to a URL pointing to a valid Lottie JSON.
 
 ```javascript
 <LottiePlayer
@@ -44,30 +44,37 @@ Add the element `lottie-player` and set the `src` property to a URL pointing to 
 
 ## Properties
 
-| Property              | Attribute             | Description                         | Type                                 | Default           |
-| --------------------- | --------------------- | ----------------------------------- | ------------------------------------ | ----------------- |
-| `autoplay`            | `autoplay`            | Autoplay animation on load.         | `boolean`                            | `false`           |
-| `background`          | `background`          | Background color.                   | `string`                             | `undefined`       |
-| `controls`            | `controls`            | Show controls.                      | `boolean`                            | `false`           |
-| `count`               | `count`               | Number of times to loop animation.  | `number`                             | `undefined`       |
-| `direction`           | `direction`           | Direction of animation.             | `number`                             | `1`               |
-| `hover`               | `hover`               | Whether to play on mouse hover.     | `boolean`                            | `false`           |
-| `loop`                | `loop`                | Whether to loop animation.          | `boolean`                            | `false`           |
-| `mode`                | `mode`                | Play mode.                          | `PlayMode.Bounce \| PlayMode.Normal` | `PlayMode.Normal` |
-| `preserveAspectRatio` | `preserveAspectRatio` | Valid preserve aspect ratio value.  | `string`                             | `'xMidYMid meet'` |
-| `renderer`            | `renderer`            | Renderer to use.                    | `"svg" | "canvas"`                   | `'svg'`           |
-| `speed`               | `speed`               | Animation speed.                    | `number`                             | `1`               |
-| `src` _(required)_    | `src`                 | Bodymovin JSON data or URL to JSON. | `string`                             | `undefined`       |
+| Property           | Attribute    | Description                         | Type               | Default     |
+| ------------------ | ------------ | ----------------------------------- | ------------------ | ----------- |
+| `autoplay`         | `autoplay`   | Autoplay animation on load.         | `boolean`          | `false`     |
+| `background`       | `background` | Background color.                   | `string`           | `undefined` |
+| `controls`         | `controls`   | Show controls.                      | `boolean`          | `false`     |
+| `direction`        | `direction`  | Direction of animation.             | `number`           | `1`         |
+| `hover`            | `hover`      | Whether to play on mouse hover.     | `boolean`          | `false`     |
+| `loop`             | `loop`       | Whether to loop animation.          | `boolean`          | `false`     |
+| `renderer`         | `renderer`   | Renderer to use.                    | `"svg" | "canvas"` | `'svg'`     |
+| `speed`            | `speed`      | Animation speed.                    | `number`           | `1`         |
+| `style`            | `style`      | The style for the container.        | `object`           | `undefined` |
+| `src` _(required)_ | `src`        | Bodymovin JSON data or URL to JSON. | `string`           | `undefined` |
+
+## Get Lottie instance
+
+The lottieRef prop returns the Lottie instance which you can use to set data and call methods as described in the bodymovin documentation.
+
+```javascript
+<LottiePlayer
+	lottieRef={(instance: any) => {
+		// do something with the instance object (reccomend setting to your state)
+	}}
+	autoplay={true}
+	controls={true}
+	loop={true}
+	src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
+	style={{ height: '300px', width: '300px' }}
+></LottiePlayer>
+```
 
 ## Methods
-
-### `getLottie() => Promise<any>`
-
-Returns the instance of lottie player used in the component.
-
-#### Returns
-
-Type: `Promise<any>`
 
 ### `load(src: string | object) => void`
 

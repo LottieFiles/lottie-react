@@ -1,9 +1,9 @@
-import { AnimationItem } from "lottie-web";
-import * as React from "react";
-import { styled } from "fannypack";
+import { styled } from 'fannypack';
+import { AnimationItem } from 'lottie-web';
+import * as React from 'react';
 
-import { PlayerState } from "./Player";
-import { Seeker } from "./Seeker";
+import { PlayerState } from './Player';
+import { Seeker } from './Seeker';
 
 const ControlButton = styled.div`
   display: inline-flex;
@@ -25,16 +25,13 @@ interface IControlProps {
   toggleDebug?: () => void;
 }
 
-export class Controls extends React.Component<
-  IControlProps,
-  { mouseDown: boolean; activeFrame: number }
-> {
+export class Controls extends React.Component<IControlProps, { mouseDown: boolean; activeFrame: number }> {
   public constructor(props: IControlProps) {
     super(props);
 
     this.state = {
       activeFrame: 0,
-      mouseDown: false
+      mouseDown: false,
     };
   }
 
@@ -52,7 +49,7 @@ export class Controls extends React.Component<
       visible,
       buttons,
       debug,
-      toggleDebug
+      toggleDebug,
     } = this.props;
     const { activeFrame, mouseDown } = this.state;
 
@@ -66,42 +63,39 @@ export class Controls extends React.Component<
       return null;
     }
 
-    const showPlayButton = !buttons || buttons.includes("play");
-    const showStopButton = !buttons || buttons.includes("stop");
-    const showRepeatButton = !buttons || buttons.includes("repeat");
-    const showDebugButton = !buttons || buttons.includes("debug");
+    const showPlayButton = !buttons || buttons.includes('play');
+    const showStopButton = !buttons || buttons.includes('stop');
+    const showRepeatButton = !buttons || buttons.includes('repeat');
+    const showDebugButton = !buttons || buttons.includes('debug');
 
     return (
       <div
         style={{
-          display: "grid",
-          height: "60px",
-          alignItems: "center",
-          backgroundColor: "#ffffff",
-          paddingLeft: "10px",
-          paddingRight: "10px",
-          gridColumnGap: "10px",
-          gridTemplateColumns: "25px 1fr 25px"
-        }}>
+          display: 'grid',
+          height: '60px',
+          alignItems: 'center',
+          backgroundColor: '#ffffff',
+          paddingLeft: '10px',
+          paddingRight: '10px',
+          gridColumnGap: '10px',
+          gridTemplateColumns: '25px 1fr 25px',
+        }}
+      >
         {showPlayButton && (
           <ControlButton
             onClick={() => {
               if (playerState === PlayerState.Playing) {
-                if (typeof pause === "function") {
+                if (typeof pause === 'function') {
                   pause();
                 }
               } else {
-                if (typeof play === "function") {
+                if (typeof play === 'function') {
                   play();
                 }
               }
             }}
-            className={
-              playerState === PlayerState.Playing ||
-              playerState === PlayerState.Paused
-                ? "active"
-                : ""
-            }>
+            className={playerState === PlayerState.Playing || playerState === PlayerState.Paused ? 'active' : ''}
+          >
             {playerState === PlayerState.Playing ? (
               <svg width="24" height="24">
                 <path d="M14.016 5.016H18v13.969h-3.984V5.016zM6 18.984V5.015h3.984v13.969H6z" />
@@ -114,9 +108,7 @@ export class Controls extends React.Component<
           </ControlButton>
         )}
         {showStopButton && (
-          <ControlButton
-            onClick={() => stop && stop()}
-            className={playerState === PlayerState.Stopped ? "active" : ""}>
+          <ControlButton onClick={() => stop && stop()} className={playerState === PlayerState.Stopped ? 'active' : ''}>
             <svg width="24" height="24">
               <path d="M6 6h12v12H6V6z" />
             </svg>
@@ -148,9 +140,7 @@ export class Controls extends React.Component<
           }}
         />
         {showRepeatButton && (
-          <ControlButton
-            onClick={() => setLoop && setLoop(true)}
-            className={loop ? "active" : ""}>
+          <ControlButton onClick={() => setLoop && setLoop(true)} className={loop ? 'active' : ''}>
             <svg width="24" height="24">
               <path d="M17.016 17.016v-4.031h1.969v6h-12v3l-3.984-3.984 3.984-3.984v3h10.031zM6.984 6.984v4.031H5.015v-6h12v-3l3.984 3.984-3.984 3.984v-3H6.984z" />
             </svg>
