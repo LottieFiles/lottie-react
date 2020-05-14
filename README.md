@@ -30,7 +30,7 @@ import { Player } from '@lottiefiles/lottie-react';
 
 ### Player component
 
-Add the element `Player` and set the `src` property to a URL pointing to a valid Lottie JSON.
+Add the element `Player` and set the `src` prop to a URL pointing to a valid Lottie JSON.
 
 ```javascript
 <Player
@@ -42,61 +42,144 @@ Add the element `Player` and set the `src` property to a URL pointing to a valid
 ></Player>
 ```
 
-## Properties
+## Props
 
-| Property           | Attribute    | Description                         | Type               | Default     |
-| ------------------ | ------------ | ----------------------------------- | ------------------ | ----------- |
-| `autoplay`         | `autoplay`   | Autoplay animation on load.         | `boolean`          | `false`     |
-| `background`       | `background` | Background color.                   | `string`           | `undefined` |
-| `controls`         | `controls`   | Show controls.                      | `boolean`          | `false`     |
-| `direction`        | `direction`  | Direction of animation.             | `number`           | `1`         |
-| `hover`            | `hover`      | Whether to play on mouse hover.     | `boolean`          | `false`     |
-| `loop`             | `loop`       | Whether to loop animation.          | `boolean`          | `false`     |
-| `renderer`         | `renderer`   | Renderer to use.                    | `"svg" | "canvas"` | `'svg'`     |
-| `speed`            | `speed`      | Animation speed.                    | `number`           | `1`         |
-| `style`            | `style`      | The style for the container.        | `object`           | `undefined` |
-| `src` _(required)_ | `src`        | Bodymovin JSON data or URL to JSON. | `string`           | `undefined` |
+| Prop                 | Description                         | Type               | Default     |
+| -------------------- | ----------------------------------- | ------------------ | ----------- |
+| `lottieRef`          | Get lottie animation object         | `function`         | `undefined` |
+| `onEvent`            | Listen for events                   | `function`         | `undefined` |
+| `onStateChange`      | Play state changes                  | `function`         | `undefined` |
+| `onBackgroundChange` | Listen for bg changes               | `function`         | `undefined` |
+| `autoplay`           | Autoplay animation on load.         | `boolean`          | `false`     |
+| `background`         | Background color.                   | `string`           | `undefined` |
+| `controls`           | Show controls.                      | `boolean`          | `false`     |
+| `direction`          | Direction of animation.             | `number`           | `1`         |
+| `hover`              | Whether to play on mouse hover.     | `boolean`          | `false`     |
+| `loop`               | Whether to loop animation.          | `boolean`          | `false`     |
+| `renderer`           | Renderer to use.                    | `"svg" | "canvas"` | `'svg'`     |
+| `speed`              | Animation speed.                    | `number`           | `1`         |
+| `style`              | The style for the container.        | `object`           | `undefined` |
+| `src` _(required)_   | Bodymovin JSON data or URL to JSON. | `string`           | `undefined` |
 
 ## Get Player instance
 
 To call methods on the instance of the Player component. you may get a reference to the component and call the methods
-on ref.current. This is esentially reacts way of doing a document.getElementById();
+on ref.current. This is esentially reacts way of doing a document.getElementById(); You may then use this ref ie: player
+in the example below to call methods that are described in this documentation. See ref in
+[react documentation](https://reactjs.org/docs/refs-and-the-dom.html)
 
 ```javascript
-// use effect allows us to check if the reference is null on re render. see react docs.
-useEffect(() => {
-  ref.current.play(); // an example of calling a method by using the reference to the component
-}, [ref.current]); // condition to null check the reference to the component
+import React from 'react';
+import { Player } from '@lottiefiles/lottie-react';
 
-<Player
-  ref={ref}
-  autoplay={true}
-  controls={true}
-  loop={true}
-  src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
-  style={{ height: '300px', width: '300px' }}
-></Player>;
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.player = React.createRef(); // initialize your ref
+  }
+  render() {
+    return (
+      <Player
+        ref={this.player} // set the ref to your class instance
+        autoplay={false}
+        loop={true}
+        controls={true}
+        src="https://assets3.lottiefiles.com/packages/lf20_XZ3pkn.json"
+        style={{ height: '300px', width: '300px' }}
+      ></Player>
+    );
+  }
+}
+
+export default App;
 ```
 
 ## Get Lottie instance
 
 The lottieRef prop returns the Lottie instance which you can use to set data and call methods as described in the
-bodymovin documentation.
+[bodymovin documentation](https://github.com/airbnb/lottie-web).
 
 ```javascript
-const [lottie, setLottie] = useState(null); // set a variable to your components state.
+import React from 'react';
+import { Player } from '@lottiefiles/lottie-react';
 
-<LottiePlayer
-  lottieRef={instance => {
-    setLottie(instance); // use a callback function and utilize the lottieRef prop to grab the instance to the lottie object
-  }}
-  autoplay={true}
-  controls={true}
-  loop={true}
-  src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
-  style={{ height: '300px', width: '300px' }}
-></LottiePlayer>;
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { lottie: null }; // initialize your state
+  }
+
+  render() {
+    return (
+      <Player
+        lottieRef={instance => {
+          this.setState({ lottie: instance }); // the lottie instance is returned in the argument of this prop. set it to your local state
+        }}
+        autoplay={false}
+        loop={true}
+        controls={true}
+        src="https://assets3.lottiefiles.com/packages/lf20_XZ3pkn.json"
+        style={{ height: '300px', width: '300px' }}
+      ></Player>
+    );
+  }
+}
+
+export default App;
 ```
+
+## Listening for events
+
+```javascript
+import React from 'react';
+import { Player } from '@lottiefiles/lottie-react';
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.player = React.createRef();
+  }
+
+  doSomething() {
+    this.player.current.play(); // make use of the player and call methods
+  }
+
+  render() {
+    return (
+      <Player
+        onEvent={event => {
+          if (event === 'load') this.doSomething(); // check event type and do something
+        }}
+        ref={this.player}
+        autoplay={false}
+        loop={true}
+        controls={true}
+        src="https://assets3.lottiefiles.com/packages/lf20_XZ3pkn.json"
+        style={{ height: '300px', width: '300px' }}
+      ></Player>
+    );
+  }
+}
+
+export default App;
+```
+
+## Events
+
+The following events are exposed and can be listened to via `addEventListener` calls.
+
+| Name       | Description                                                               |
+| ---------- | ------------------------------------------------------------------------- |
+| `load`     | Animation data is loaded.                                                 |
+| `error`    | An animation source cannot be parsed, fails to load or has format errors. |
+| `ready`    | Animation data is loaded and player is ready.                             |
+| `play`     | Animation starts playing.                                                 |
+| `pause`    | Animation is paused.                                                      |
+| `stop`     | Animation is stopped.                                                     |
+| `freeze`   | Animation is paused due to player being invisible.                        |
+| `loop`     | An animation loop is completed.                                           |
+| `complete` | Animation is complete (all loops completed).                              |
+| `frame`    | A new frame is entered.                                                   |
 
 ## Methods
 
@@ -116,7 +199,7 @@ Start playing animation.
 
 Type: `void`
 
-### `setPlayerDirection(value: number) => void`
+### `setPlayerDirection(direction: 1 | -1 ) => void`
 
 Animation play direction.
 
@@ -130,7 +213,7 @@ Animation play direction.
 
 Type: `void`
 
-### `setPlayerSpeed(value?: number) => void`
+### `setPlayerSpeed(speed?: number) => void`
 
 Sets animation play speed.
 
@@ -152,30 +235,13 @@ Stops animation play.
 
 Type: `void`
 
-### `setSeeker(value: number | string) => void`
+### `setSeeker(frame: number | string, play: boolean) => void`
 
 Seek to a given frame. Frame value can be a number or a percent string (e.g. 50%).
 
 #### Returns
 
 Type: `void`
-
-## Events
-
-The following events are exposed and can be listened to via `addEventListener` calls.
-
-| Name       | Description                                                               |
-| ---------- | ------------------------------------------------------------------------- |
-| `load`     | Animation data is loaded.                                                 |
-| `error`    | An animation source cannot be parsed, fails to load or has format errors. |
-| `ready`    | Animation data is loaded and player is ready.                             |
-| `play`     | Animation starts playing.                                                 |
-| `pause`    | Animation is paused.                                                      |
-| `stop`     | Animation is stopped.                                                     |
-| `freeze`   | Animation is paused due to player being invisible.                        |
-| `loop`     | An animation loop is completed.                                           |
-| `complete` | Animation is complete (all loops completed).                              |
-| `frame`    | A new frame is entered.                                                   |
 
 ## License
 
