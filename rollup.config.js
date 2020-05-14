@@ -1,6 +1,7 @@
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import strip from '@rollup/plugin-strip';
+import filesize from 'rollup-plugin-filesize';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
@@ -22,7 +23,7 @@ export default {
     },
     {
       file: pkg.module,
-      format: 'esm',
+      format: 'es',
       sourcemap: true,
       name,
     },
@@ -30,7 +31,7 @@ export default {
 
   plugins: [
     // Remove debugger statements and console.log calls
-    !isProduction && strip(),
+    isProduction && strip(),
 
     // Externalize peerDependencies
     peerDepsExternal(),
@@ -44,7 +45,10 @@ export default {
     // Use Typescript to transpile code
     typescript(),
 
-    // Minify output using Terser
-    terser(),
+    // In production mode, minify
+    isProduction && terser(),
+
+    // Show output filesize
+    filesize(),
   ],
 };
