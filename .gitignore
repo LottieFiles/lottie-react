@@ -15,7 +15,7 @@ pids
 .lock-wscript
 
 # Dependency directories
-node_modules/
+**/node_modules/
 
 # Force Karam to not add package-lock.json
 package-lock.json

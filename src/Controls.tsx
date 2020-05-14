@@ -62,6 +62,7 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
           paddingRight: '10px',
           gridColumnGap: '10px',
           gridTemplateColumns: '25px 1fr 25px',
+          width: '100%',
         }}
       >
         {showPlayButton && (

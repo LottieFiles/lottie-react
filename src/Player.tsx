@@ -1,4 +1,4 @@
-import lottie, { AnimationConfig, AnimationItem } from 'lottie-web/build/player/lottie_svg';
+import lottie, { AnimationConfig, AnimationItem } from 'lottie-web';
 import * as React from 'react';
 
 /**
@@ -137,7 +137,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
     const { animationData, instance, playerState, seeker, debug, background } = this.state;
 
     return (
-      <>
+      <div>
         <div
           id="lottie"
           ref={el => (this.container = el)}
@@ -176,7 +176,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
 
           return null;
         })}
-      </>
+      </div>
     );
   }
 
