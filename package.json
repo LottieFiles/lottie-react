@@ -1,6 +1,6 @@
 {
   "name": "@lottiefiles/react-lottie-player",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Lottie web player wrapper for React",
   "main": "./dist/lottie-react.js",
   "module": "./dist/lottie-react.esm.js",
@@ -29,7 +29,8 @@
     "rollup-plugin-terser": "^5.3.0",
     "rollup-plugin-typescript2": "^0.27.0",
     "styled-components": "^5.1.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.5.3",
+    "rollup-plugin-filesize": "^9.0.0"
   },
   "peerDependencies": {
     "react": "^16.8.6",
