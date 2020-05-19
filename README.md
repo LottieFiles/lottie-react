@@ -23,7 +23,7 @@ npm install --save @lottiefiles/lottie-react
 2. Import package in your code.
 
 ```javascript
-import { Player } from '@lottiefiles/lottie-react';
+import { Player, Controls } from '@lottiefiles/lottie-react';
 ```
 
 ## Usage
@@ -39,7 +39,9 @@ Add the element `Player` and set the `src` prop to a URL pointing to a valid Lot
   loop={true}
   src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
   style={{ height: '300px', width: '300px' }}
-></Player>
+>
+  <Controls visible={true} buttons={['play', 'repeat', 'debug']} />
+</Player>
 ```
 
 ## Props
