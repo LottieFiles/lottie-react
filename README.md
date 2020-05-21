@@ -2,8 +2,6 @@
 
 This is a React component for the Lottie Web Player
 
-[![npm](https://img.shields.io/npm/v/@lottiefiles/lottie-react.svg)](https://www.npmjs.com/package/@lottiefiles/react-lottie-player)
-
 ## Demo
 
 ![screencast](https://i.imgur.com/miLzIkJ.gif)
@@ -17,7 +15,7 @@ This is a React component for the Lottie Web Player
 1. Install package using npm or yarn.
 
 ```shell
-npm install --save @lottiefiles/react-lottie-player
+npm install --save @lottiefiles/react-lottie-player styled-components
 ```
 
 2. Import package in your code.
