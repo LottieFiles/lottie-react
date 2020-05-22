@@ -24,9 +24,9 @@
     "emitDecoratorMetadata": true, // Emit decorator metadata
     "importHelpers": false, // Import helper functions from tslib
     "preserveConstEnums": true,
-    "noEmit": true,
+    "noEmit": false,
     "plugins": []
   },
-  "include": ["src"],
+  "include": ["src", "stories"],
   "exclude": ["node_modules"]
 }
