@@ -109,9 +109,13 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
       debug: true,
       instance: null,
       playerState: PlayerState.Loading,
-      seeker: 1,
+      seeker: 0,
     };
   }
+
+  static defaultProps = {
+    loop: true,
+  };
 
   public async componentDidMount() {
     await this.createLottie();
@@ -171,6 +175,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
               setSeeker: (f: number, p: boolean) => this.setSeeker(f, p),
               stop: () => this.stop(),
               toggleDebug: () => this.toggleDebug(),
+              setLoop: (loop: boolean) => this.setLoop(loop),
             });
           }
 
@@ -241,6 +246,12 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
       // Set error state when animation load fail event triggers
       newInstance.addEventListener('data_failed', () => {
         this.setState({ playerState: PlayerState.Error });
+      });
+
+      // Set state to paused if loop is off and anim has completed
+      newInstance.addEventListener('complete', () => {
+        this.setState({ playerState: PlayerState.Paused });
+        this.setSeeker(0);
       });
 
       // Set initial playback speed and direction
@@ -323,12 +334,20 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
     if (instance) {
       if (!play || playerState !== PlayerState.Playing) {
         instance.goToAndStop(seek, true);
+        this.setState({ playerState: PlayerState.Paused });
       } else {
         instance.goToAndPlay(seek, true);
       }
     }
   }
+  private setLoop(loop: boolean) {
+    const { instance } = this.state;
 
+    if (instance) {
+      instance.loop = loop;
+      this.setState({ instance: instance });
+    }
+  }
   private triggerEvent(event: PlayerEvent) {
     const { onEvent } = this.props;
 

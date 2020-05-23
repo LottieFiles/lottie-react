@@ -15,13 +15,25 @@ This is a React component for the Lottie Web Player
 1. Install package using npm or yarn.
 
 ```shell
-npm install --save @lottiefiles/react-lottie-player styled-components
+npm install --save @lottiefiles/react-lottie-player
 ```
 
 2. Import package in your code.
 
 ```javascript
 import { Player, Controls } from '@lottiefiles/react-lottie-player';
+```
+
+## Example/Development
+
+1. Clone repo
+
+2. run yarn install
+
+3. run yarn storybook
+
+```shell
+yarn storybook
 ```
 
 ## Usage

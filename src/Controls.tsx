@@ -1,13 +1,15 @@
+import './Styles.css';
+
 import * as React from 'react';
-import styled from 'styled-components';
 
 import { PlayerState } from './Player';
 import { Seeker } from './Seeker';
 
-const ControlButton = styled.div`
-  display: inline-flex;
-  cursor: pointer;
-`;
+const ControlButtonStyle = {
+  display: 'inline-flex',
+  cursor: 'pointer',
+};
+
 interface IControlProps {
   instance?: any;
   loop?: boolean;
@@ -35,7 +37,7 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
   }
 
   public render() {
-    const { instance, loop, playerState, seeker, setLoop, setSeeker, play, pause, stop, visible, buttons } = this.props;
+    const { instance, playerState, seeker, setLoop, setSeeker, play, pause, stop, visible, buttons } = this.props;
 
     // Render nothing if lottie instance is not available
     if (!instance) {
@@ -66,7 +68,9 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
         }}
       >
         {showPlayButton && (
-          <ControlButton
+          <div
+            role="button"
+            tabIndex={0}
             onClick={() => {
               if (playerState === PlayerState.Playing) {
                 if (typeof pause === 'function') {
@@ -78,7 +82,19 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
                 }
               }
             }}
+            onKeyDown={() => {
+              if (playerState === PlayerState.Playing) {
+                if (typeof pause === 'function') {
+                  pause();
+                }
+              } else {
+                if (typeof play === 'function') {
+                  play();
+                }
+              }
+            }}
             className={playerState === PlayerState.Playing || playerState === PlayerState.Paused ? 'active' : ''}
+            style={ControlButtonStyle}
           >
             {playerState === PlayerState.Playing ? (
               <svg width="24" height="24">
@@ -89,20 +105,27 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
                 <path d="M8.016 5.016L18.985 12 8.016 18.984V5.015z" />
               </svg>
             )}
-          </ControlButton>
+          </div>
         )}
         {showStopButton && (
-          <ControlButton onClick={() => stop && stop()} className={playerState === PlayerState.Stopped ? 'active' : ''}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={() => stop && stop()}
+            onKeyDown={() => stop && stop()}
+            className={playerState === PlayerState.Stopped ? 'active' : ''}
+            style={ControlButtonStyle}
+          >
             <svg width="24" height="24">
               <path d="M6 6h12v12H6V6z" />
             </svg>
-          </ControlButton>
+          </div>
         )}
         <Seeker
           min={1}
           step={1}
           max={instance ? instance.totalFrames : 1}
-          value={seeker || 1}
+          value={seeker || 0}
           onChange={(newFrame: any) => {
             if (setSeeker) {
               this.setState({ activeFrame: newFrame }, () => {
@@ -119,11 +142,26 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
           }}
         />
         {showRepeatButton && (
-          <ControlButton onClick={() => setLoop && setLoop(true)} className={loop ? 'active' : ''}>
+          <div
+            role="button"
+            tabIndex={0}
+            onClick={() => {
+              if (instance && setLoop) {
+                setLoop(!instance.loop);
+              }
+            }}
+            onKeyDown={() => {
+              if (instance && setLoop) {
+                setLoop(!instance.loop);
+              }
+            }}
+            className={instance.loop ? 'active-btn' : 'deactivated-btn'}
+            style={ControlButtonStyle}
+          >
             <svg width="24" height="24">
               <path d="M17.016 17.016v-4.031h1.969v6h-12v3l-3.984-3.984 3.984-3.984v3h10.031zM6.984 6.984v4.031H5.015v-6h12v-3l3.984 3.984-3.984 3.984v-3H6.984z" />
             </svg>
-          </ControlButton>
+          </div>
         )}
       </div>
     );

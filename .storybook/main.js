@@ -1,3 +1,4 @@
+const path = require('path');
 module.exports = {
   webpackFinal: async config => {
     config.module.rules.push({
@@ -12,9 +13,15 @@ module.exports = {
         },
       ],
     });
+    config.module.rules.push({
+      test: /\.scss$/,
+      use: ['style-loader', 'css-loader', 'sass-loader'],
+      include: path.resolve(__dirname, '../'),
+    });
+
     config.resolve.extensions.push('.ts', '.tsx');
     return config;
   },
-  stories: ['../stories/**/*.stories.js'],
-  addons: ['@storybook/addon-actions', '@storybook/addon-links'],
+  stories: ['../**/*.stories.tsx'],
+  addons: ['@storybook/preset-typescript', '@storybook/addon-actions', '@storybook/addon-links'],
 };
