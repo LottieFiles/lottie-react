@@ -10,7 +10,7 @@
     "skipLibCheck": true,
     // "esModuleInterop": true,
     "sourceMap": true, // Generate corresponding .map file
-    "declaration": false, // Do not generate corresponding .d.ts file
+    "declaration": true, // Do not generate corresponding .d.ts file
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "strictNullChecks": true,

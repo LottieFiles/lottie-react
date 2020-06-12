@@ -4,6 +4,7 @@
   "description": "Lottie web player wrapper for React",
   "main": "./dist/lottie-react.js",
   "module": "./dist/lottie-react.esm.js",
+  "types": "index.d.ts",
   "devDependencies": {
     "@babel/core": "^7.9.6",
     "@rollup/plugin-commonjs": "^11.1.0",
