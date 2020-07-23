@@ -44,7 +44,7 @@ export default {
     commonjs(),
 
     // Use Typescript to transpile code
-    typescript(),
+    typescript({ tsconfigOverride: { compilerOptions: { declaration: true } } }),
 
     // In production mode, minify
     isProduction && terser(),
