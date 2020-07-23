@@ -52,11 +52,14 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
     const showPlayButton = !buttons || buttons.includes('play');
     const showStopButton = !buttons || buttons.includes('stop');
     const showRepeatButton = !buttons || buttons.includes('repeat');
+    const showFrameInput = !buttons || buttons.includes('frame');
+
+    const currentFrame = Math.round(instance.currentFrame);
 
     return (
       <div
         style={{
-          display: 'grid',
+          display: 'flex',
           height: '60px',
           alignItems: 'center',
           backgroundColor: '#ffffff',
@@ -141,6 +144,11 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
             }
           }}
         />
+        {showFrameInput && (
+          <div role="button" className="button-container">
+            <input className="frame-number" type="text" value={currentFrame} />
+          </div>
+        )}
         {showRepeatButton && (
           <div
             role="button"

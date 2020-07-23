@@ -12,6 +12,6 @@ export default {
 
 export const LottiePlayer = () => (
   <Player src="https://assets6.lottiefiles.com/private_files/lf30_T5tVEx.json" autoplay style={{ height: '300px' }}>
-    <Controls visible={true} buttons={['play', 'repeat', 'debug']} />
+    <Controls visible={true} buttons={['play', 'repeat', 'frame', 'debug']} />
   </Player>
 );
