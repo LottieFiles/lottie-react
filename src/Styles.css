@@ -131,3 +131,16 @@
   display: flex;
   align-items: center;
 }
+.btn {
+  cursor: pointer;
+  fill: #999;
+  width: 14px;
+}
+
+.btn:hover {
+  fill: #222;
+}
+
+.btn.active {
+  fill: #555;
+}
