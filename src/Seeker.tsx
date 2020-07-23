@@ -35,7 +35,6 @@ export class Seeker extends React.Component<ISeekerProps> {
 
   render() {
     const progress = (this.props.value / this.props.max) * 100;
-    console.log(this.props.value);
     const seekerStyle = {
       backgroundImage: `-webkit-gradient(linear, left top, right top, color-stop(${progress}%, rgba(15, 204, 206, 0.4)), color-stop(${progress}%, #DAE1E7))`,
     };
