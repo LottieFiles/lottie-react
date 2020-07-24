@@ -57,6 +57,7 @@ export class Seeker extends React.Component<ISeekerProps> {
           step="0.1"
           value={progress}
           onInput={this.handleChange()}
+          onChange={this.handleChange()}
           style={seekerStyle}
         />
       </div>

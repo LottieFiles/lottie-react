@@ -150,7 +150,7 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
         />
         {showFrameInput && (
           <div role="button" className="button-container">
-            <input className="frame-number" type="text" value={currentFrame} />
+            <input className="frame-number" type="text" value={currentFrame} readOnly />
           </div>
         )}
         {showRepeatButton && (
