@@ -43,6 +43,8 @@ export class Seeker extends React.Component<ISeekerProps> {
       flexDirection: 'column',
       alignItems: 'center',
       width: '100%',
+      marginRight: '10px',
+      marginLeft: '10px',
     } as React.CSSProperties;
     return (
       <div style={seekerContainerStyle}>
