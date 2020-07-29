@@ -44,13 +44,12 @@ Add the element `Player` and set the `src` prop to a URL pointing to a valid Lot
 
 ```javascript
 <Player
-  autoplay={true}
-  controls={true}
-  loop={true}
+  autoplay
+  loop
   src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
   style={{ height: '300px', width: '300px' }}
 >
-  <Controls visible={true} buttons={['play', 'repeat', 'debug']} />
+  <Controls visible={true} buttons={['play', 'repeat', 'frame', 'debug']} />
 </Player>
 ```
 
