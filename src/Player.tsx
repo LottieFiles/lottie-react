@@ -190,7 +190,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
   }
 
   private async createLottie() {
-    const { autoplay, direction, loop, lottieRef, renderer, speed, src } = this.props;
+    const { autoplay, direction, loop, lottieRef, renderer, speed, src, background } = this.props;
     const { instance } = this.state;
 
     if (!src || !this.container) {
@@ -261,6 +261,10 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
 
       if (direction) {
         this.setPlayerDirection(direction);
+      }
+
+      if (background) {
+        this.setState({ background });
       }
 
       this.setState({ instance: newInstance }, () => {
