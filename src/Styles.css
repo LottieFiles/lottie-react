@@ -130,7 +130,6 @@
 .button-container {
   display: flex;
   align-items: center;
-  margin-right: 10px;
 }
 .btn {
   cursor: pointer;
