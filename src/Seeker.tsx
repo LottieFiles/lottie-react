@@ -35,7 +35,6 @@ export class Seeker extends React.Component<ISeekerProps> {
 
   render() {
     const progress = (this.props.value / this.props.max) * 100;
-    console.log(this.props.value);
     const seekerStyle = {
       backgroundImage: `-webkit-gradient(linear, left top, right top, color-stop(${progress}%, rgba(15, 204, 206, 0.4)), color-stop(${progress}%, #DAE1E7))`,
     };
@@ -44,6 +43,8 @@ export class Seeker extends React.Component<ISeekerProps> {
       flexDirection: 'column',
       alignItems: 'center',
       width: '100%',
+      marginRight: '10px',
+      marginLeft: '10px',
     } as React.CSSProperties;
     return (
       <div style={seekerContainerStyle}>
@@ -58,6 +59,7 @@ export class Seeker extends React.Component<ISeekerProps> {
           step="0.1"
           value={progress}
           onInput={this.handleChange()}
+          onChange={this.handleChange()}
           style={seekerStyle}
         />
       </div>

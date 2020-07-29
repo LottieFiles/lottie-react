@@ -114,7 +114,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
   }
 
   static defaultProps = {
-    loop: true,
+    loop: false,
   };
 
   public async componentDidMount() {
@@ -218,7 +218,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
         animationData,
         autoplay: false,
         container: this.container as Element,
-        loop: loop || true,
+        loop: loop || false,
         renderer,
       });
 
