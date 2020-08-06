@@ -11,7 +11,7 @@ stories
 .travis.yml
 
 # Source code
-./src
+src
 
 # Configs 
 jest.config.js

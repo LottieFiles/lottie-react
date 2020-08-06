@@ -1,10 +1,13 @@
 {
   "name": "@lottiefiles/react-lottie-player",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "Lottie web player wrapper for React",
   "main": "./dist/lottie-react.js",
   "module": "./dist/lottie-react.esm.js",
   "types": "./dist/src/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "devDependencies": {
     "@babel/core": "^7.9.6",
     "@rollup/plugin-commonjs": "^11.1.0",
