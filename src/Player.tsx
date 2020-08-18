@@ -280,7 +280,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
     }
   }
 
-  private play() {
+  public play() {
     const { instance } = this.state;
 
     if (instance) {
@@ -292,7 +292,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
     }
   }
 
-  private pause() {
+  public pause() {
     const { instance } = this.state;
 
     if (instance) {
@@ -304,7 +304,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
     }
   }
 
-  private stop() {
+  public stop() {
     const { instance } = this.state;
 
     if (instance) {
@@ -316,7 +316,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
     }
   }
 
-  private setPlayerSpeed(speed: number) {
+  public setPlayerSpeed(speed: number) {
     const { instance } = this.state;
 
     if (instance) {
@@ -324,7 +324,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
     }
   }
 
-  private setPlayerDirection(direction: PlayerDirection) {
+  public setPlayerDirection(direction: PlayerDirection) {
     const { instance } = this.state;
 
     if (instance) {
@@ -332,7 +332,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
     }
   }
 
-  private setSeeker(seek: number, play = false) {
+  public setSeeker(seek: number, play = false) {
     const { instance, playerState } = this.state;
 
     if (instance) {
@@ -344,7 +344,8 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
       }
     }
   }
-  private setLoop(loop: boolean) {
+
+  public setLoop(loop: boolean) {
     const { instance } = this.state;
 
     if (instance) {
