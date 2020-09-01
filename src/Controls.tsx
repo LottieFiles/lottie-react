@@ -96,7 +96,9 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
                 }
               }
             }}
-            className={playerState === PlayerState.Playing || playerState === PlayerState.Paused ? 'btn active' : 'btn'}
+            className={
+              playerState === PlayerState.Playing || playerState === PlayerState.Paused ? 'lf-btn active' : 'lf-btn'
+            }
             style={ControlButtonStyle}
           >
             {playerState === PlayerState.Playing ? (
@@ -117,7 +119,7 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
             role="button"
             onClick={() => stop && stop()}
             onKeyDown={() => stop && stop()}
-            className={playerState === PlayerState.Stopped ? 'btn active' : 'btn'}
+            className={playerState === PlayerState.Stopped ? 'lf-btn active' : 'lf-btn'}
             style={ControlButtonStyle}
           >
             <svg {...ICON_SIZE}>
@@ -149,8 +151,8 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
           }}
         />
         {showFrameInput && (
-          <div role="button" className="button-container">
-            <input className="frame-number" type="text" value={currentFrame} readOnly />
+          <div role="button" className="lf-button-container">
+            <input className="lf-frame-number" type="text" value={currentFrame} readOnly />
           </div>
         )}
         {showRepeatButton && (
@@ -167,7 +169,7 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
                 setLoop(!instance.loop);
               }
             }}
-            className={instance.loop ? 'active-btn' : 'deactivated-btn'}
+            className={instance.loop ? 'lf-active-btn' : 'lf-deactivated-btn'}
             style={ControlButtonStyle}
           >
             <svg {...ICON_SIZE}>

@@ -1,4 +1,4 @@
-.progress {
+.lf-progress {
   -webkit-appearance: none;
   -moz-apperance: none;
   width: 100%;
@@ -7,17 +7,17 @@
   border-radius: 3px;
   cursor: pointer;
 }
-.progress:focus {
+.lf-progress:focus {
   outline: none;
   border: none;
 }
-.progress::-moz-range-track {
+.lf-progress::-moz-range-track {
   cursor: pointer;
   background: none;
   border: none;
   outline: none;
 }
-.progress::-webkit-slider-thumb {
+.lf-progress::-webkit-slider-thumb {
   -webkit-appearance: none !important;
   height: 13px;
   width: 13px;
@@ -26,7 +26,7 @@
   background: #0fccce;
   cursor: pointer;
 }
-.progress::-moz-range-thumb {
+.lf-progress::-moz-range-thumb {
   -moz-appearance: none !important;
   height: 13px;
   width: 13px;
@@ -35,7 +35,7 @@
   background: #0fccce;
   cursor: pointer;
 }
-.progress::-ms-track {
+.lf-progress::-ms-track {
   width: 100%;
   height: 3px;
   cursor: pointer;
@@ -43,15 +43,15 @@
   border-color: transparent;
   color: transparent;
 }
-.progress::-ms-fill-lower {
+.lf-progress::-ms-fill-lower {
   background: #ccc;
   border-radius: 3px;
 }
-.progress::-ms-fill-upper {
+.lf-progress::-ms-fill-upper {
   background: #ccc;
   border-radius: 3px;
 }
-.progress::-ms-thumb {
+.lf-progress::-ms-thumb {
   border: 0;
   height: 15px;
   width: 15px;
@@ -59,26 +59,26 @@
   background: #0fccce;
   cursor: pointer;
 }
-.progress:focus::-ms-fill-lower {
+.lf-progress:focus::-ms-fill-lower {
   background: #ccc;
 }
-.progress:focus::-ms-fill-upper {
+.lf-progress:focus::-ms-fill-upper {
   background: #ccc;
 }
-.deactivated-btn {
+.lf-deactivated-btn {
   opacity: 0.5;
 }
-.active-btn {
+.lf-active-btn {
   opacity: 1;
 }
-:focus {
+/* :focus {
   outline: 0;
-}
-.popover {
+} */
+/* .popover {
   position: relative;
-}
+} */
 
-.popover-content {
+.lf-popover-content {
   display: inline-block;
   position: absolute;
   opacity: 1;
@@ -88,13 +88,13 @@
   transition: all 0.3s cubic-bezier(0.75, -0.02, 0.2, 0.97);
 }
 
-.popover-content.hidden {
+.lf-popover-content.hidden {
   opacity: 0;
   visibility: hidden;
   transform: translate(0, 0px);
 }
 
-.arrow {
+/* .arrow {
   position: absolute;
   z-index: -1;
   content: '';
@@ -113,9 +113,9 @@
 .right-align .arrow {
   right: 0;
   left: unset;
-}
+} */
 
-.frame-number {
+.lf-frame-number {
   outline: none;
   border: 1px #ccc solid;
   border-radius: 3px;
@@ -127,20 +127,20 @@
   font-family: inherit;
 }
 
-.button-container {
+.lf-button-container {
   display: flex;
   align-items: center;
 }
-.btn {
+.lf-btn {
   cursor: pointer;
   fill: #999;
   width: 14px;
 }
 
-.btn:hover {
+.lf-btn:hover {
   fill: #222;
 }
 
-.btn.active {
+.lf-btn.active {
   fill: #555;
 }
