@@ -24,6 +24,7 @@ interface IControlProps {
   buttons?: string[];
   debug?: boolean;
   toggleDebug?: () => void;
+  showLabels?: boolean;
 }
 
 export class Controls extends React.Component<IControlProps, { mouseDown: boolean; activeFrame: number }> {
@@ -147,6 +148,7 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
               });
             }
           }}
+          showLabels={this.props.showLabels}
         />
         {showFrameInput && (
           <div role="button" className="button-container">

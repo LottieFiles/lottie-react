@@ -13,7 +13,7 @@ export default {
 export const LottiePlayer = () => (
   <div style={{ width: '374px' }}>
     <Player
-      src="https://assets6.lottiefiles.com/private_files/lf30_T5tVEx.json"
+      src="https://assets2.lottiefiles.com/packages/lf20_zezidsfk.json"
       autoplay
       loop
       background="#000000"

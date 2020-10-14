@@ -13,8 +13,7 @@ interface ISeekerProps {
   onChange: (e: any) => void;
   onChangeStart?: (v: number) => void;
   onChangeEnd?: (v: number) => void;
-  showMaxLabel?: boolean;
-  showMinLabel?: boolean;
+  showLabels?: boolean;
   step: number;
   value: number;
 }
@@ -45,6 +44,40 @@ export class Seeker extends React.Component<ISeekerProps> {
       width: '100%',
       marginRight: '10px',
       marginLeft: '10px',
+      position: 'relative',
+    } as React.CSSProperties;
+
+    const minLabelStyle = {
+      position: 'absolute',
+      bottom: '-17px',
+      left: 0,
+      marginTop: '8px',
+      width: '20px',
+      display: 'block',
+      border: '0px',
+      backgroundColor: 'rgb(218, 225, 231)',
+      color: '#555',
+      padding: '2px',
+      textAlign: 'center',
+      borderRadius: '3px',
+      fontSize: '8px',
+      fontWeight: 'bold',
+    } as React.CSSProperties;
+    const maxLabelStyle = {
+      position: 'absolute',
+      bottom: '-17px',
+      right: 0,
+      marginTop: '8px',
+      width: '20px',
+      display: 'block',
+      border: '0px',
+      backgroundColor: 'rgb(218, 225, 231)',
+      color: '#555',
+      padding: '2px',
+      textAlign: 'center',
+      borderRadius: '3px',
+      fontSize: '8px',
+      fontWeight: 'bold',
     } as React.CSSProperties;
     return (
       <div style={seekerContainerStyle}>
@@ -62,6 +95,12 @@ export class Seeker extends React.Component<ISeekerProps> {
           onChange={this.handleChange()}
           style={seekerStyle}
         />
+        {this.props.showLabels && (
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div style={minLabelStyle}>{this.props.min}</div>
+            <div style={maxLabelStyle}>{this.props.max}</div>
+          </div>
+        )}
       </div>
     );
   }
