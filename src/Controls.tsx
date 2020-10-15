@@ -133,7 +133,7 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
           min={1}
           step={1}
           max={instance ? instance.totalFrames : 1}
-          value={seeker || 0}
+          value={seeker || 1}
           onChange={(newFrame: any) => {
             if (setSeeker) {
               this.setState({ activeFrame: newFrame }, () => {
