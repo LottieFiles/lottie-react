@@ -127,20 +127,16 @@
   font-family: inherit;
 }
 
-.button-container {
+.lf-player-btn-container {
   display: flex;
   align-items: center;
 }
-.btn {
+.lf-player-btn {
   cursor: pointer;
   fill: #999;
   width: 14px;
 }
 
-.btn:hover {
-  fill: #222;
-}
-
-.btn.active {
+.lf-player-btn.active {
   fill: #555;
 }

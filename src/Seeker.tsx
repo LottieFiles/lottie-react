@@ -16,6 +16,7 @@ interface ISeekerProps {
   showLabels?: boolean;
   step: number;
   value: number;
+  darkTheme?: boolean;
 }
 
 export class Seeker extends React.Component<ISeekerProps> {
@@ -55,8 +56,8 @@ export class Seeker extends React.Component<ISeekerProps> {
       width: '20px',
       display: 'block',
       border: '0px',
-      backgroundColor: 'rgb(218, 225, 231)',
-      color: '#555',
+      backgroundColor: this.props.darkTheme ? '#505050' : 'rgb(218, 225, 231)',
+      color: this.props.darkTheme ? '#B9B9B9' : '#555',
       padding: '2px',
       textAlign: 'center',
       borderRadius: '3px',
@@ -71,8 +72,8 @@ export class Seeker extends React.Component<ISeekerProps> {
       width: '20px',
       display: 'block',
       border: '0px',
-      backgroundColor: 'rgb(218, 225, 231)',
-      color: '#555',
+      backgroundColor: this.props.darkTheme ? '#505050' : 'rgb(218, 225, 231)',
+      color: this.props.darkTheme ? '#B9B9B9' : '#555',
       padding: '2px',
       textAlign: 'center',
       borderRadius: '3px',

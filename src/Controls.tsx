@@ -25,6 +25,7 @@ interface IControlProps {
   debug?: boolean;
   toggleDebug?: () => void;
   showLabels?: boolean;
+  darkTheme?: boolean;
 }
 
 export class Controls extends React.Component<IControlProps, { mouseDown: boolean; activeFrame: number }> {
@@ -64,7 +65,7 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
           justifyContent: 'space-between',
           height: '60px',
           alignItems: 'center',
-          backgroundColor: '#ffffff',
+          backgroundColor: this.props.darkTheme ? '#3C3C3C' : '#ffffff',
           paddingLeft: '10px',
           paddingRight: '10px',
           gridColumnGap: '10px',
@@ -97,7 +98,7 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
                 }
               }
             }}
-            className={playerState === PlayerState.Playing || playerState === PlayerState.Paused ? 'btn active' : 'btn'}
+            className="lf-player-btn"
             style={ControlButtonStyle}
           >
             {playerState === PlayerState.Playing ? (
@@ -118,7 +119,7 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
             role="button"
             onClick={() => stop && stop()}
             onKeyDown={() => stop && stop()}
-            className={playerState === PlayerState.Stopped ? 'btn active' : 'btn'}
+            className={playerState === PlayerState.Stopped ? 'lf-player-btn active' : 'lf-player-btn'}
             style={ControlButtonStyle}
           >
             <svg {...ICON_SIZE}>
@@ -130,10 +131,10 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
           </div>
         )}
         <Seeker
-          min={1}
+          min={0}
           step={1}
           max={instance ? instance.totalFrames : 1}
-          value={seeker || 1}
+          value={seeker || 0}
           onChange={(newFrame: any) => {
             if (setSeeker) {
               this.setState({ activeFrame: newFrame }, () => {
@@ -149,10 +150,27 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
             }
           }}
           showLabels={this.props.showLabels}
+          darkTheme={this.props.darkTheme}
         />
         {showFrameInput && (
-          <div role="button" className="button-container">
-            <input className="frame-number" type="text" value={currentFrame} readOnly />
+          <div role="button" className="lf-player-btn-container">
+            <input
+              style={{
+                outline: 'none',
+                border: this.props.darkTheme ? '1px #505050 solid' : '1px #ccc solid',
+                borderRadius: '3px',
+                width: '40px',
+                textAlign: 'center',
+                backgroundColor: this.props.darkTheme ? '#505050' : '#ffffff',
+                color: this.props.darkTheme ? '#B9B9B9' : '#999',
+                fontSize: '0.7rem',
+                padding: '0',
+                fontFamily: 'inherit',
+              }}
+              type="text"
+              value={currentFrame}
+              readOnly
+            />
           </div>
         )}
         {showRepeatButton && (
@@ -169,7 +187,7 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
                 setLoop(!instance.loop);
               }
             }}
-            className={instance.loop ? 'active-btn' : 'deactivated-btn'}
+            className={instance.loop ? 'lf-player-btn active' : 'lf-player-btn'}
             style={ControlButtonStyle}
           >
             <svg {...ICON_SIZE}>
