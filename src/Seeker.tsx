@@ -50,7 +50,6 @@ export class Seeker extends React.Component<ISeekerProps> {
 
     const minLabelStyle = {
       position: 'absolute',
-      bottom: '-17px',
       left: 0,
       marginTop: '8px',
       width: '20px',
@@ -66,7 +65,6 @@ export class Seeker extends React.Component<ISeekerProps> {
     } as React.CSSProperties;
     const maxLabelStyle = {
       position: 'absolute',
-      bottom: '-17px',
       right: 0,
       marginTop: '8px',
       width: '20px',
