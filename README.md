@@ -70,7 +70,7 @@ Add the element `Player` and set the `src` prop to a URL pointing to a valid Lot
 | `renderer`           | Renderer to use.                    | `"svg" | "canvas"` | `'svg'`     |
 | `speed`              | Animation speed.                    | `number`           | `1`         |
 | `style`              | The style for the container.        | `object`           | `undefined` |
-| `src` _(required)_   | Bodymovin JSON data or URL to JSON. | `string`           | `undefined` |
+| `src` _(required)_   | Bodymovin JSON data or URL to JSON. | `object` | `string`| `undefined` |
 
 ## Get Player instance
 
