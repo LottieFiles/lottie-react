@@ -13,11 +13,12 @@ export default {
 export const LottiePlayer = () => (
   <div style={{ width: '374px' }}>
     <Player
-      src="https://assets2.lottiefiles.com/packages/lf20_zezidsfk.json"
+      src="https://assets6.lottiefiles.com/packages/lf20_V9t630.json"
       autoplay
       loop
-      background="#000000"
+      background="#ffffff"
       style={{ height: '300px' }}
+      renderer="html"
     >
       <Controls darkTheme={true} showLabels={true} visible={true} buttons={['play', 'repeat', 'frame', 'debug']} />
     </Player>

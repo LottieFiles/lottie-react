@@ -52,6 +52,7 @@ export enum PlayerEvent {
 export type PlayerDirection = -1 | 1;
 
 export interface IPlayerProps {
+  id?: string;
   lottieRef?: (ref: AnimationItem) => void;
   onEvent?: (event: PlayerEvent) => any;
   onStateChange?: (state: PlayerState) => any;
@@ -143,7 +144,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
     return (
       <div>
         <div
-          id="lottie"
+          id={this.props.id ? this.props.id : 'lottie'}
           ref={el => (this.container = el)}
           style={{
             background,
