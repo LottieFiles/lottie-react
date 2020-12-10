@@ -65,7 +65,7 @@ export interface IPlayerProps {
   loop?: boolean | number;
   renderer?: 'svg' | 'canvas' | 'html';
   speed?: number;
-  src: string;
+  src: object | string;
   style?: { [key: string]: string | number };
 }
 
