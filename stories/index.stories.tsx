@@ -1,3 +1,5 @@
+import '@storybook/addon-console';
+
 import * as React from 'react';
 
 import { Controls } from '../src/Controls';
@@ -10,17 +12,28 @@ export default {
   },
 };
 
-export const LottiePlayer = () => (
-  <div style={{ width: '374px' }}>
-    <Player
-      src="https://assets6.lottiefiles.com/packages/lf20_V9t630.json"
-      autoplay
-      loop
-      background="#ffffff"
-      style={{ height: '300px' }}
-      renderer="html"
-    >
-      <Controls darkTheme={true} showLabels={true} visible={true} buttons={['play', 'repeat', 'frame', 'debug']} />
-    </Player>
-  </div>
-);
+export const LottiePlayer = () => {
+  const onEvent = (event: any) => {
+    console.log('event', event);
+  };
+  return (
+    <div style={{ width: '374px' }}>
+      <Player
+        src="https://assets6.lottiefiles.com/packages/lf20_V9t630.json"
+        autoplay
+        loop
+        background="#ffffff"
+        style={{ height: '300px' }}
+        renderer="html"
+        onEvent={onEvent}
+      >
+        <Controls
+          darkTheme={true}
+          showLabels={true}
+          visible={true}
+          buttons={['play', 'repeat', 'frame', 'debug', 'stop']}
+        />
+      </Player>
+    </div>
+  );
+};
