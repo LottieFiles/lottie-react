@@ -56,7 +56,7 @@ export interface IPlayerProps {
   onEvent?: (event: PlayerEvent) => any;
   onStateChange?: (state: PlayerState) => any;
   onBackgroundChange?: (color: string) => void;
-  autoplay: boolean;
+  autoplay?: boolean;
   background?: string;
   children?: React.ReactNode | React.ReactNode[];
   controls?: boolean;
