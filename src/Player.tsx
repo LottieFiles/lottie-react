@@ -136,7 +136,10 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
       await this.createLottie();
     }
   }
-
+  handleBgChange = (childData: any) => {
+    this.setState({ background: childData });
+    console.log(childData);
+  };
   public render() {
     const { children, loop, style, onBackgroundChange } = this.props;
     const { animationData, instance, playerState, seeker, debug, background } = this.state;
@@ -177,9 +180,11 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
               stop: () => this.stop(),
               toggleDebug: () => this.toggleDebug(),
               setLoop: (loop: boolean) => this.setLoop(loop),
+              colorChangedEvent: (hex: string) => {
+                this.handleBgChange(hex);
+              },
             });
           }
-
           return null;
         })}
       </div>

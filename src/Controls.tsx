@@ -2,7 +2,9 @@ import './Styles.css';
 
 import * as React from 'react';
 
+import { ColorPicker } from './ColorPicker';
 import { PlayerState } from './Player';
+import { Popover } from './Popover';
 import { Seeker } from './Seeker';
 
 const ControlButtonStyle = {
@@ -26,6 +28,7 @@ interface IControlProps {
   toggleDebug?: () => void;
   showLabels?: boolean;
   darkTheme?: boolean;
+  colorChangedEvent?: () => void;
 }
 
 export class Controls extends React.Component<IControlProps, { mouseDown: boolean; activeFrame: number }> {
@@ -55,6 +58,7 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
     const showStopButton = !buttons || buttons.includes('stop');
     const showRepeatButton = !buttons || buttons.includes('repeat');
     const showFrameInput = !buttons || buttons.includes('frame');
+    const showBackgroundChange = !buttons || buttons.includes('background');
     const ICON_SIZE = { width: 14, height: 14, viewBox: '0 0 24 24' };
     const currentFrame = Math.round(instance.currentFrame);
 
@@ -217,6 +221,25 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
               ></path>
             </svg>
           </div>
+        )}
+        {showBackgroundChange && (
+          <Popover
+            icon={
+              <svg {...ICON_SIZE}>
+                <path
+                  d="M12 3.1L6.1 8.6a7.6 7.6 0 00-2.2 4 7.2 7.2 0 00.4 4.4 7.9 7.9 0 003 3.5 8.7 8.7 0 004.7 1.3c1.6 0
+            3.2-.5 4.6-1.3s2.4-2 3-3.5a7.2 7.2 0 00.5-4.5 7.6 7.6 0 00-2.2-4L12 3.2zM12 0l7.5 7a9.8 9.8 0 013 5.1
+            9.3 9.3 0 01-.6 5.8c-.9 1.8-2.2 3.3-4 4.4A11.2 11.2 0 0112 24a11.2 11.2 0
+            01-6-1.7c-1.7-1-3-2.6-3.9-4.4a9.3 9.3 0 01-.6-5.8c.4-2 1.5-3.7 3-5L12 0zM6 14h12c0 1.5-.7 3-1.8 4s-2.6
+            1.6-4.2 1.6S9 19 7.8 18s-1.7-2.5-1.7-4z"
+                ></path>
+              </svg>
+            }
+          >
+            <div slot="content" className="popover popover-background">
+              <ColorPicker colorChangedEvent={this.props.colorChangedEvent} />
+            </div>
+          </Popover>
         )}
       </div>
     );

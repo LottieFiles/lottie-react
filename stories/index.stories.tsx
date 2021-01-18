@@ -20,7 +20,12 @@ export const LottiePlayer = () => (
       style={{ height: '300px' }}
       renderer="html"
     >
-      <Controls darkTheme={true} showLabels={true} visible={true} buttons={['play', 'repeat', 'frame', 'debug']} />
+      <Controls
+        darkTheme={true}
+        showLabels={true}
+        visible={true}
+        buttons={['play', 'repeat', 'frame', 'background', 'debug']}
+      />
     </Player>
   </div>
 );
