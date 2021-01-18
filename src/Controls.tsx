@@ -69,7 +69,7 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
           justifyContent: 'space-between',
           height: '60px',
           alignItems: 'center',
-          backgroundColor: this.props.darkTheme ? '#3C3C3C' : '#ffffff',
+          backgroundColor: this.props.darkTheme ? '#3C3C3C' : 'transparent',
           paddingLeft: '10px',
           paddingRight: '10px',
           gridColumnGap: '10px',

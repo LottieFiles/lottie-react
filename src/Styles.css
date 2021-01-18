@@ -148,6 +148,7 @@
 .lf-popover-content {
   display: inline-block;
   position: absolute;
+  background-color: #ffffff;
   /* opacity: 1; */
   /* visibility: visible; */
   /* transform: translate(0, -10px); */

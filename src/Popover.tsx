@@ -45,7 +45,7 @@ export const Popover: React.FC<IPopoverProps> = (props: IPopoverProps) => {
    * Hide content box
    */
   const hide = () => {
-    //setOpen(false);
+    setOpen(false);
   };
 
   return (
@@ -54,7 +54,6 @@ export const Popover: React.FC<IPopoverProps> = (props: IPopoverProps) => {
       onMouseOver={() => {
         show();
       }}
-      onMouseOut={() => hide()}
       ref={triggerRef => {
         setTriggerRef(triggerRef);
       }}
@@ -66,6 +65,9 @@ export const Popover: React.FC<IPopoverProps> = (props: IPopoverProps) => {
           ref={contentRef => {
             setContentRef(contentRef);
           }}
+          onMouseLeave={() => {
+            hide();
+          }}
           style={{
             bottom: _triggerRef ? _triggerRef.getBoundingClientRect().height + 'px' : 0,
             zIndex: 2,
@@ -76,8 +78,6 @@ export const Popover: React.FC<IPopoverProps> = (props: IPopoverProps) => {
           {children}
         </div>
       ) : null}
-
-      <div className="lf-arrow" style={{ borderColor: `transparent transparent transparent transparent;` }} />
     </div>
   );
 };

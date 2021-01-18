@@ -21,7 +21,7 @@ export const LottiePlayer = () => (
       renderer="html"
     >
       <Controls
-        darkTheme={true}
+        darkTheme={false}
         showLabels={true}
         visible={true}
         buttons={['play', 'repeat', 'frame', 'background', 'debug']}
