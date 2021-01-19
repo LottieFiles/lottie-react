@@ -140,6 +140,50 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
     this.setState({ background: childData });
     console.log(childData);
   };
+  triggerDownload = (dataUri: any, filename: any) => {
+    const element = document.createElement('a');
+
+    element.href = dataUri;
+    element.download = filename;
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+  };
+  snapshot = (download = true) => {
+    let data;
+    const id = this.props.id ? this.props.id : 'lottie';
+
+    if (this.props.renderer === 'svg') {
+      // Get SVG element and serialize markup
+
+      const svgElement = document.getElementById(id)?.querySelector('svg');
+
+      if (svgElement) {
+        const serializedSvg = new XMLSerializer().serializeToString(svgElement);
+        data = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(serializedSvg);
+      }
+      // Trigger file download if needed
+      if (download) {
+        // this.triggerDownload(data, `snapshot_${progress}.svg`);
+        this.triggerDownload(data, `snapshot.svg`);
+      }
+    } else if (this.props.renderer === 'canvas') {
+      const canvas = document.getElementById(id)?.querySelector('canvas');
+      if (canvas) {
+        data = canvas.toDataURL('image/png');
+      }
+      // Trigger file download if needed
+      if (download) {
+        // this.triggerDownload(data, `snapshot_${progress}.png`);
+        this.triggerDownload(data, `snapshot.png`);
+      }
+    }
+
+    return data;
+  };
+
   public render() {
     const { children, loop, style, onBackgroundChange } = this.props;
     const { animationData, instance, playerState, seeker, debug, background } = this.state;
@@ -182,6 +226,9 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
               setLoop: (loop: boolean) => this.setLoop(loop),
               colorChangedEvent: (hex: string) => {
                 this.handleBgChange(hex);
+              },
+              snapshot: () => {
+                this.snapshot();
               },
             });
           }

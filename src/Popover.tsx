@@ -24,7 +24,6 @@ export const Popover: React.FC<IPopoverProps> = (props: IPopoverProps) => {
       const alignment = triggerBounds.left + contentBounds.width > window.innerWidth ? -1 : 0;
 
       setAlignment(alignment);
-      console.log(_alignment);
 
       // Start with content box hidden
       // Hide();

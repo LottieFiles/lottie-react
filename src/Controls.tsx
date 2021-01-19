@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import './Styles.css';
 
 import * as React from 'react';
@@ -28,7 +30,9 @@ interface IControlProps {
   toggleDebug?: () => void;
   showLabels?: boolean;
   darkTheme?: boolean;
+  transparentTheme?: boolean;
   colorChangedEvent?: () => void;
+  snapshot?: () => void;
 }
 
 export class Controls extends React.Component<IControlProps, { mouseDown: boolean; activeFrame: number }> {
@@ -59,6 +63,7 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
     const showRepeatButton = !buttons || buttons.includes('repeat');
     const showFrameInput = !buttons || buttons.includes('frame');
     const showBackgroundChange = !buttons || buttons.includes('background');
+    const showSnapshot = !buttons || buttons.includes('snapshot');
     const ICON_SIZE = { width: 14, height: 14, viewBox: '0 0 24 24' };
     const currentFrame = Math.round(instance.currentFrame);
 
@@ -69,7 +74,7 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
           justifyContent: 'space-between',
           height: '60px',
           alignItems: 'center',
-          backgroundColor: this.props.darkTheme ? '#3C3C3C' : 'transparent',
+          backgroundColor: this.props.transparentTheme ? 'transparent' : this.props.darkTheme ? '#3C3C3C' : '#ffffff',
           paddingLeft: '10px',
           paddingRight: '10px',
           gridColumnGap: '10px',
@@ -238,6 +243,46 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
           >
             <div slot="content" className="popover popover-background">
               <ColorPicker colorChangedEvent={this.props.colorChangedEvent} />
+            </div>
+          </Popover>
+        )}
+        {showSnapshot && (
+          <Popover
+            icon={
+              <svg {...ICON_SIZE}>
+                <path
+                  clipRule="evenodd"
+                  d="M0 3.01A2.983 2.983 0 012.983.027H16.99a2.983 2.983 0 012.983 2.983v14.008a2.982 2.982 0 01-2.983
+              2.983H2.983A2.983 2.983 0 010 17.018zm2.983-.941a.941.941 0 00-.942.94v14.01c0
+              .52.422.94.942.94H16.99a.94.94 0 00.941-.94V3.008a.941.941 0 00-.94-.94H2.981z"
+                  fillRule="evenodd"
+                ></path>
+                <path d="M12.229 7.945l-2.07 4.598-2.586-2.605-2.414 2.758v2.146h9.656V11.93z"></path>
+                <circle cx="7.444" cy="6.513" r="2.032"></circle>
+                <path
+                  d="M9.561 23.916h11.25a2.929 2.929 0 002.926-2.927V9.954a1.06 1.06 0 10-2.122 0v11.035a.805.805 0
+              01-.803.804H9.562a1.061 1.061 0 100 2.123z"
+                  stroke="#8795a1"
+                  strokeWidth=".215"
+                ></path>
+              </svg>
+            }
+          >
+            <div
+              slot="content"
+              className="lf-popover lf-popover-snapshot"
+              onWheel={e => {
+                if (setSeeker) setSeeker(currentFrame + (e.deltaY > 0 ? -1 : 1), false);
+              }}
+            >
+              <h5>Frame {currentFrame}</h5>
+              <div style={{ cursor: 'pointer', color: '#0FCCCE' }} onClick={this.props.snapshot}>
+                Download SVG
+              </div>
+              <div style={{ cursor: 'pointer', color: '#0FCCCE' }} onClick={this.props.snapshot}>
+                Download PNG
+              </div>
+              <i className="lf-note">Scroll with mousewheel to find exact frame</i>
             </div>
           </Popover>
         )}

@@ -18,13 +18,13 @@ export const LottiePlayer = () => (
       loop
       background="#ffffff"
       style={{ height: '300px' }}
-      renderer="html"
+      renderer="svg"
     >
       <Controls
-        darkTheme={false}
+        transparentTheme={true}
         showLabels={true}
         visible={true}
-        buttons={['play', 'repeat', 'frame', 'background', 'debug']}
+        buttons={['play', 'repeat', 'frame', 'background', 'snapshot', 'debug']}
       />
     </Player>
   </div>
