@@ -57,7 +57,7 @@ export interface IPlayerProps {
   onEvent?: (event: PlayerEvent) => any;
   onStateChange?: (state: PlayerState) => any;
   onBackgroundChange?: (color: string) => void;
-  autoplay: boolean;
+  autoplay?: boolean;
   background?: string;
   children?: React.ReactNode | React.ReactNode[];
   controls?: boolean;
@@ -136,6 +136,53 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
       await this.createLottie();
     }
   }
+  handleBgChange = (childData: any) => {
+    this.setState({ background: childData });
+    console.log(childData);
+  };
+  triggerDownload = (dataUri: any, filename: any) => {
+    const element = document.createElement('a');
+
+    element.href = dataUri;
+    element.download = filename;
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+  };
+  snapshot = (download = true) => {
+    let data;
+    const id = this.props.id ? this.props.id : 'lottie';
+
+    if (this.props.renderer === 'svg') {
+      // Get SVG element and serialize markup
+
+      const svgElement = document.getElementById(id)?.querySelector('svg');
+
+      if (svgElement) {
+        const serializedSvg = new XMLSerializer().serializeToString(svgElement);
+        data = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(serializedSvg);
+      }
+      // Trigger file download if needed
+      if (download) {
+        // this.triggerDownload(data, `snapshot_${progress}.svg`);
+        this.triggerDownload(data, `snapshot.svg`);
+      }
+    } else if (this.props.renderer === 'canvas') {
+      const canvas = document.getElementById(id)?.querySelector('canvas');
+      if (canvas) {
+        data = canvas.toDataURL('image/png');
+      }
+      // Trigger file download if needed
+      if (download) {
+        // this.triggerDownload(data, `snapshot_${progress}.png`);
+        this.triggerDownload(data, `snapshot.png`);
+      }
+    }
+
+    return data;
+  };
 
   public render() {
     const { children, loop, style, onBackgroundChange } = this.props;
@@ -177,9 +224,14 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
               stop: () => this.stop(),
               toggleDebug: () => this.toggleDebug(),
               setLoop: (loop: boolean) => this.setLoop(loop),
+              colorChangedEvent: (hex: string) => {
+                this.handleBgChange(hex);
+              },
+              snapshot: () => {
+                this.snapshot();
+              },
             });
           }
-
           return null;
         })}
       </div>

@@ -24,7 +24,7 @@ export const LottiePlayer = () => {
         loop
         background="#ffffff"
         style={{ height: '300px' }}
-        renderer="html"
+        renderer="svg"
         onEvent={onEvent}
       >
         <Controls
