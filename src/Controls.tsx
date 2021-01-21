@@ -78,6 +78,7 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
           paddingLeft: '10px',
           paddingRight: '10px',
           gridColumnGap: '10px',
+          gridGap: '10px',
           gridTemplateColumns: '25px 1fr 25px',
         }}
       >

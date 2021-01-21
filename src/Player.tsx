@@ -272,12 +272,14 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
       const newInstance = lottie.loadAnimation({
         ...defaultOptions,
         animationData,
-        autoplay: false,
+        autoplay: autoplay || false,
         container: this.container as Element,
         loop: loop || false,
         renderer,
       });
-
+      if (speed) {
+        lottie.setSpeed(speed);
+      }
       this.setState({ animationData });
 
       // Handle new frame event
