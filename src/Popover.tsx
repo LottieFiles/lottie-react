@@ -24,14 +24,8 @@ export const Popover: React.FC<IPopoverProps> = (props: IPopoverProps) => {
       const alignment = triggerBounds.left + contentBounds.width > window.innerWidth ? -1 : 0;
 
       setAlignment(alignment);
-
-      // Start with content box hidden
-      // Hide();
     }
   }, [_alignment, _contentRef, _triggerRef]);
-  // onMount(() => {
-
-  // });
 
   // /**
   //  * Show content box
@@ -53,6 +47,9 @@ export const Popover: React.FC<IPopoverProps> = (props: IPopoverProps) => {
       onMouseOver={() => {
         show();
       }}
+      onMouseLeave={() => {
+        hide();
+      }}
       ref={triggerRef => {
         setTriggerRef(triggerRef);
       }}
@@ -64,15 +61,10 @@ export const Popover: React.FC<IPopoverProps> = (props: IPopoverProps) => {
           ref={contentRef => {
             setContentRef(contentRef);
           }}
-          onMouseLeave={() => {
-            hide();
-          }}
           style={{
             bottom: _triggerRef ? _triggerRef.getBoundingClientRect().height + 'px' : 0,
             zIndex: 2,
           }}
-          // class:left-align={_alignment !== -1}
-          // class:right-align={_alignment === -1}
         >
           {children}
         </div>

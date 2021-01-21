@@ -153,25 +153,29 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
   snapshot = (download = true) => {
     let data;
     const id = this.props.id ? this.props.id : 'lottie';
-
+    const lottieElement = document.getElementById(id);
     if (this.props.renderer === 'svg') {
       // Get SVG element and serialize markup
+      if (lottieElement) {
+        const svgElement = lottieElement.querySelector('svg');
 
-      const svgElement = document.getElementById(id)?.querySelector('svg');
-
-      if (svgElement) {
-        const serializedSvg = new XMLSerializer().serializeToString(svgElement);
-        data = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(serializedSvg);
+        if (svgElement) {
+          const serializedSvg = new XMLSerializer().serializeToString(svgElement);
+          data = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(serializedSvg);
+        }
       }
+
       // Trigger file download if needed
       if (download) {
         // this.triggerDownload(data, `snapshot_${progress}.svg`);
         this.triggerDownload(data, `snapshot.svg`);
       }
     } else if (this.props.renderer === 'canvas') {
-      const canvas = document.getElementById(id)?.querySelector('canvas');
-      if (canvas) {
-        data = canvas.toDataURL('image/png');
+      if (lottieElement) {
+        const canvas = lottieElement.querySelector('canvas');
+        if (canvas) {
+          data = canvas.toDataURL('image/png');
+        }
       }
       // Trigger file download if needed
       if (download) {

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "rootDir": "src",
     "target": "esnext", // Specify ECMAScript target version
     "module": "esnext", // Specify module code generation
     "moduleResolution": "node", // Resolve modules using Node.js style
@@ -27,6 +28,6 @@
     "noEmit": false,
     "plugins": []
   },
-  "include": ["src", "stories"],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }
