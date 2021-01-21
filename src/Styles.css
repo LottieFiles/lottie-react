@@ -149,9 +149,9 @@
   display: inline-block;
   position: absolute;
   background-color: #ffffff;
-  /* opacity: 1; */
-  /* visibility: visible; */
-  /* transform: translate(0, -10px); */
+  opacity: 1;
+
+  transform: translate(0, -10px);
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   transition: all 0.3s cubic-bezier(0.75, -0.02, 0.2, 0.97);
   padding: 10px;
@@ -260,13 +260,13 @@
   margin-top: 10px;
   color: #999;
 }
-.lf-player-controls div {
+.lf-player-controls > div {
   margin-right: 5px;
   margin-left: 5px;
 }
-.lf-player-controls div:first-child {
+.lf-player-controls > div:first-child {
   margin-left: 0px;
 }
-.lf-player-controls div:last-child {
+.lf-player-controls > div:last-child {
   margin-right: 0px;
 }

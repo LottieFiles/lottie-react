@@ -55,20 +55,21 @@ export const Popover: React.FC<IPopoverProps> = (props: IPopoverProps) => {
       }}
     >
       <div className=" lf-player-btn">{icon}</div>
-      {_open ? (
-        <div
-          className="lf-popover-content"
-          ref={contentRef => {
-            setContentRef(contentRef);
-          }}
-          style={{
-            bottom: _triggerRef ? _triggerRef.getBoundingClientRect().height + 'px' : 0,
-            zIndex: 2,
-          }}
-        >
-          {children}
-        </div>
-      ) : null}
+
+      <div
+        className="lf-popover-content"
+        ref={contentRef => {
+          setContentRef(contentRef);
+        }}
+        style={{
+          bottom: '22px',
+          right: '0px',
+          zIndex: 2,
+          visibility: _open ? 'visible' : 'hidden',
+        }}
+      >
+        {children}
+      </div>
     </div>
   );
 };
