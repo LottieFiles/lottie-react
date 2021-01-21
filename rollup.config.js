@@ -44,7 +44,8 @@ export default {
     commonjs(),
 
     // Use Typescript to transpile code
-    typescript({ lib: ['es5', 'es6', 'dom'], target: 'es5' }),
+    // typescript({ lib: ['es5', 'es6', 'dom'], target: 'es5' }),
+    typescript({ tsconfig: './tsconfig.json' }),
 
     // In production mode, minify
     isProduction && terser(),

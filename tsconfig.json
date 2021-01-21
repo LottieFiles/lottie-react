@@ -1,17 +1,18 @@
 {
   "compilerOptions": {
     "rootDir": "src",
-    "target": "esnext", // Specify ECMAScript target version
+    "target": "es5", // Specify ECMAScript target version
     "module": "esnext", // Specify module code generation
     "moduleResolution": "node", // Resolve modules using Node.js style
     // "allowSyntheticDefaultImports": true, // Allow default imports from modules with no default export
     "resolveJsonModule": true, // Include modules imported with .json extension
     "jsx": "react", // Support JSX in .tsx files
+    "lib": ["es5", "es6", "dom"],
     // "allowJs": true, // Allow JavaScript
     "skipLibCheck": true,
     // "esModuleInterop": true,
     "sourceMap": true, // Generate corresponding .map file
-    "declaration": false, // Do not generate corresponding .d.ts file
+    "declaration": true, // Do not generate corresponding .d.ts file
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "strictNullChecks": true,
@@ -26,7 +27,8 @@
     "importHelpers": false, // Import helper functions from tslib
     "preserveConstEnums": true,
     "noEmit": false,
-    "plugins": []
+    "plugins": [],
+    "outDir": "src"
   },
   "include": ["src"],
   "exclude": ["node_modules"]
