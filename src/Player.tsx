@@ -303,6 +303,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
 
       // Set state to paused if loop is off and anim has completed
       newInstance.addEventListener('complete', () => {
+        this.triggerEvent(PlayerEvent.Complete);
         this.setState({ playerState: PlayerState.Paused });
         this.setSeeker(0);
       });
@@ -349,7 +350,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
     const { instance } = this.state;
 
     if (instance) {
-      this.triggerEvent(PlayerEvent.Play);
+      this.triggerEvent(PlayerEvent.Pause);
 
       instance.pause();
 
@@ -361,11 +362,11 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
     const { instance } = this.state;
 
     if (instance) {
-      this.triggerEvent(PlayerEvent.Play);
+      this.triggerEvent(PlayerEvent.Stop);
 
       instance.stop();
 
-      this.setState({ playerState: PlayerState.Playing });
+      this.setState({ playerState: PlayerState.Stopped });
     }
   }
 
@@ -391,6 +392,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
     if (instance) {
       if (!play || playerState !== PlayerState.Playing) {
         instance.goToAndStop(seek, true);
+        this.triggerEvent(PlayerEvent.Pause);
         this.setState({ playerState: PlayerState.Paused });
       } else {
         instance.goToAndPlay(seek, true);
