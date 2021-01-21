@@ -69,6 +69,7 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
 
     return (
       <div
+        className="lf-player-controls"
         style={{
           display: 'flex',
           justifyContent: 'space-between',
@@ -77,9 +78,6 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
           backgroundColor: this.props.transparentTheme ? 'transparent' : this.props.darkTheme ? '#3C3C3C' : '#ffffff',
           paddingLeft: '10px',
           paddingRight: '10px',
-          gridColumnGap: '10px',
-          gridGap: '10px',
-          gridTemplateColumns: '25px 1fr 25px',
         }}
       >
         {showPlayButton && (
