@@ -138,7 +138,6 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
   }
   handleBgChange = (childData: any) => {
     this.setState({ background: childData });
-    console.log(childData);
   };
   triggerDownload = (dataUri: any, filename: any) => {
     const element = document.createElement('a');

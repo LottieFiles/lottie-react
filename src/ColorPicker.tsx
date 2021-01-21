@@ -41,7 +41,6 @@ export class ColorPicker extends React.Component<ColorPickerProps> {
     if (typeof input !== 'string') {
       return;
     }
-    console.log(input);
     if (input[0] === '#') {
       const _colorComponents =
         input.length === 4

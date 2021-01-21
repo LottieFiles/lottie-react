@@ -28,10 +28,10 @@ export const LottiePlayer = () => {
         onEvent={onEvent}
       >
         <Controls
-          darkTheme={true}
+          transparentTheme={true}
           showLabels={true}
           visible={true}
-          buttons={['play', 'repeat', 'frame', 'debug', 'stop']}
+          buttons={['play', 'repeat', 'frame', 'debug', 'snapshot', 'background', 'stop']}
         />
       </Player>
     </div>
