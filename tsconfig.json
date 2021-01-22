@@ -27,7 +27,7 @@
     "preserveConstEnums": true,
     "noEmit": false,
     "plugins": [],
-    "outDir": "src"
+    "declarationDir": ""
   },
   "include": ["src", "stories"],
   "exclude": ["node_modules"]
