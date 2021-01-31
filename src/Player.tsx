@@ -315,7 +315,6 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
       newInstance.addEventListener('complete', () => {
         this.triggerEvent(PlayerEvent.Complete);
         this.setState({ playerState: PlayerState.Paused });
-        this.setSeeker(0);
       });
 
       // Set initial playback speed and direction
