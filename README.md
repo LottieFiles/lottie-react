@@ -55,22 +55,23 @@ Add the element `Player` and set the `src` prop to a URL pointing to a valid Lot
 
 ## Props
 
-| Prop                 | Description                         | Type               | Default     |
-| -------------------- | ----------------------------------- | ------------------ | ----------- |
-| `lottieRef`          | Get lottie animation object         | `function`         | `undefined` |
-| `onEvent`            | Listen for events                   | `function`         | `undefined` |
-| `onStateChange`      | Play state changes                  | `function`         | `undefined` |
-| `onBackgroundChange` | Listen for bg changes               | `function`         | `undefined` |
-| `autoplay`           | Autoplay animation on load.         | `boolean`          | `false`     |
-| `background`         | Background color.                   | `string`           | `undefined` |
-| `controls`           | Show controls.                      | `boolean`          | `false`     |
-| `direction`          | Direction of animation.             | `number`           | `1`         |
-| `hover`              | Whether to play on mouse hover.     | `boolean`          | `false`     |
-| `loop`               | Whether to loop animation.          | `boolean`          | `false`     |
-| `renderer`           | Renderer to use.                    | `"svg" | "canvas"` | `'svg'`     |
-| `speed`              | Animation speed.                    | `number`           | `1`         |
-| `style`              | The style for the container.        | `object`           | `undefined` |
-| `src` _(required)_   | Bodymovin JSON data or URL to JSON. | `object` | `string`| `undefined` |
+| Prop                 | Description                                                            | Type               | Default     |
+| -------------------- | ---------------------------------------------------------------------- | ------------------ | ----------- |
+| `lottieRef`          | Get lottie animation object                                            | `function`         | `undefined` |
+| `onEvent`            | Listen for events                                                      | `function`         | `undefined` |
+| `onStateChange`      | Play state changes                                                     | `function`         | `undefined` |
+| `onBackgroundChange` | Listen for bg changes                                                  | `function`         | `undefined` |
+| `autoplay`           | Autoplay animation on load.                                            | `boolean`          | `false`     |
+| `background`         | Background color.                                                      | `string`           | `undefined` |
+| `controls`           | Show controls.                                                         | `boolean`          | `false`     |
+| `direction`          | Direction of animation.                                                | `number`           | `1`         |
+| `hover`              | Whether to play on mouse hover.                                        | `boolean`          | `false`     |
+| `keepLastFrame`      | Stop animation on the last frame.</br>Has no effect if `loop` is true. | `boolean`          | `false`     |
+| `loop`               | Whether to loop animation.                                             | `boolean`          | `false`     |
+| `renderer`           | Renderer to use.                                                       | `"svg" | "canvas"` | `'svg'`     |
+| `speed`              | Animation speed.                                                       | `number`           | `1`         |
+| `style`              | The style for the container.                                           | `object`           | `undefined` |
+| `src` _(required)_   | Bodymovin JSON data or URL to JSON.                                    | `object` | `string`| `undefined` |
 
 ## Get Player instance
 
