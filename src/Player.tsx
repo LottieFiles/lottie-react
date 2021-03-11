@@ -305,11 +305,15 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
         this.setState({ playerState: PlayerState.Error });
       });
 
+      // Handle new loop event
+      newInstance.addEventListener('loopComplete', () => {
+        this.triggerEvent(PlayerEvent.Loop);
+      });
+
       // Set state to paused if loop is off and anim has completed
       newInstance.addEventListener('complete', () => {
         this.triggerEvent(PlayerEvent.Complete);
         this.setState({ playerState: PlayerState.Paused });
-        this.setSeeker(0);
       });
 
       // Set initial playback speed and direction
