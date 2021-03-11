@@ -69,6 +69,7 @@ export interface IPlayerProps {
   src: object | string;
   style?: { [key: string]: string | number };
   rendererSettings?: object;
+  keepLastFrame?: boolean;
 }
 
 interface IPlayerState {
@@ -314,6 +315,10 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
       newInstance.addEventListener('complete', () => {
         this.triggerEvent(PlayerEvent.Complete);
         this.setState({ playerState: PlayerState.Paused });
+
+        if (!this.props.keepLastFrame || this.props.loop) {
+          this.setSeeker(0);
+        }
       });
 
       // Set initial playback speed and direction
