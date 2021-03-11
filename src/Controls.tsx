@@ -240,7 +240,7 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
               </svg>
             }
           >
-            <div slot="content" className="popover popover-background">
+            <div slot="content" className="lf-popover popover-background">
               <ColorPicker colorChangedEvent={this.props.colorChangedEvent} />
             </div>
           </Popover>
