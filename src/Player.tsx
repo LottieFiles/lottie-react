@@ -98,7 +98,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
     }
   }
 
-  private container: Element | null = null;
+  public container: Element | null = null;
 
   constructor(props: IPlayerProps) {
     super(props);
@@ -346,9 +346,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
       this.setState({ playerState: PlayerState.Error });
     }
   }
-  public animationContainer() {
-    return this.container;
-  }
+
   public play() {
     const { instance } = this.state;
 
