@@ -1,4 +1,4 @@
-.progress {
+.lf-progress {
   -webkit-appearance: none;
   -moz-apperance: none;
   width: 100%;
@@ -7,17 +7,17 @@
   border-radius: 3px;
   cursor: pointer;
 }
-.progress:focus {
+.lf-progress:focus {
   outline: none;
   border: none;
 }
-.progress::-moz-range-track {
+.lf-progress::-moz-range-track {
   cursor: pointer;
   background: none;
   border: none;
   outline: none;
 }
-.progress::-webkit-slider-thumb {
+.lf-progress::-webkit-slider-thumb {
   -webkit-appearance: none !important;
   height: 13px;
   width: 13px;
@@ -26,7 +26,7 @@
   background: #0fccce;
   cursor: pointer;
 }
-.progress::-moz-range-thumb {
+.lf-progress::-moz-range-thumb {
   -moz-appearance: none !important;
   height: 13px;
   width: 13px;
@@ -35,7 +35,7 @@
   background: #0fccce;
   cursor: pointer;
 }
-.progress::-ms-track {
+.lf-progress::-ms-track {
   width: 100%;
   height: 3px;
   cursor: pointer;
@@ -43,15 +43,15 @@
   border-color: transparent;
   color: transparent;
 }
-.progress::-ms-fill-lower {
+.lf-progress::-ms-fill-lower {
   background: #ccc;
   border-radius: 3px;
 }
-.progress::-ms-fill-upper {
+.lf-progress::-ms-fill-upper {
   background: #ccc;
   border-radius: 3px;
 }
-.progress::-ms-thumb {
+.lf-progress::-ms-thumb {
   border: 0;
   height: 15px;
   width: 15px;
@@ -59,10 +59,10 @@
   background: #0fccce;
   cursor: pointer;
 }
-.progress:focus::-ms-fill-lower {
+.lf-progress:focus::-ms-fill-lower {
   background: #ccc;
 }
-.progress:focus::-ms-fill-upper {
+.lf-progress:focus::-ms-fill-upper {
   background: #ccc;
 }
 .deactivated-btn {
@@ -74,11 +74,11 @@
 :focus {
   outline: 0;
 }
-.popover {
+.lf-popover {
   position: relative;
 }
 
-.popover-content {
+.lf-popover-content {
   display: inline-block;
   position: absolute;
   opacity: 1;
@@ -88,7 +88,7 @@
   transition: all 0.3s cubic-bezier(0.75, -0.02, 0.2, 0.97);
 }
 
-.popover-content.hidden {
+.lf-popover-content.hidden {
   opacity: 0;
   visibility: hidden;
   transform: translate(0, 0px);

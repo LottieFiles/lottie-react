@@ -83,7 +83,7 @@ export class Seeker extends React.Component<ISeekerProps> {
         <input
           ref={this.inputRef}
           id="track"
-          className="progress"
+          className="lf-progress"
           name="progress"
           type="range"
           min="0"

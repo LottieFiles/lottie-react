@@ -1,4 +1,4 @@
-import lottie, { AnimationConfig, AnimationItem } from 'lottie-web';
+import lottie, { AnimationItem } from 'lottie-web';
 import * as React from 'react';
 
 /**
@@ -68,6 +68,8 @@ export interface IPlayerProps {
   speed?: number;
   src: object | string;
   style?: { [key: string]: string | number };
+  rendererSettings?: object;
+  keepLastFrame?: boolean;
 }
 
 interface IPlayerState {
@@ -81,12 +83,10 @@ interface IPlayerState {
 }
 
 // Build default config for lottie-web player
-const defaultOptions: Partial<AnimationConfig> = {
-  rendererSettings: {
-    clearCanvas: false,
-    hideOnTransparent: true,
-    progressiveLoad: true,
-  },
+const defaultOptions = {
+  clearCanvas: false,
+  hideOnTransparent: true,
+  progressiveLoad: true,
 };
 
 export class Player extends React.Component<IPlayerProps, IPlayerState> {
@@ -246,7 +246,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
   }
 
   private async createLottie() {
-    const { autoplay, direction, loop, lottieRef, renderer, speed, src, background } = this.props;
+    const { autoplay, direction, loop, lottieRef, renderer, speed, src, background, rendererSettings } = this.props;
     const { instance } = this.state;
 
     if (!src || !this.container) {
@@ -270,7 +270,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
 
       // Initialize lottie player and load animation
       const newInstance = lottie.loadAnimation({
-        ...defaultOptions,
+        rendererSettings: rendererSettings || defaultOptions,
         animationData,
         autoplay: autoplay || false,
         container: this.container as Element,
@@ -306,11 +306,19 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
         this.setState({ playerState: PlayerState.Error });
       });
 
+      // Handle new loop event
+      newInstance.addEventListener('loopComplete', () => {
+        this.triggerEvent(PlayerEvent.Loop);
+      });
+
       // Set state to paused if loop is off and anim has completed
       newInstance.addEventListener('complete', () => {
         this.triggerEvent(PlayerEvent.Complete);
         this.setState({ playerState: PlayerState.Paused });
-        this.setSeeker(0);
+
+        if (!this.props.keepLastFrame || this.props.loop) {
+          this.setSeeker(0);
+        }
       });
 
       // Set initial playback speed and direction
