@@ -338,7 +338,9 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
       this.setState({ playerState: PlayerState.Error });
     }
   }
-
+  public animationContainer() {
+    return this.container;
+  }
   public play() {
     const { instance } = this.state;
 
