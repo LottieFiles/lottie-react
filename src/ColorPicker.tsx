@@ -63,7 +63,9 @@ export class ColorPicker extends React.Component<ColorPickerProps> {
 
   componentDidUpdate(_prevProps: any, prevState: any) {
     if (this.props.colorChangedEvent) {
-      if (this.state.hex !== prevState.hex) this.props.colorChangedEvent(prevState.hex);
+      if (this.state.hex !== prevState.hex) {
+        this.props.colorChangedEvent(this.state.hex);
+      }
     }
     return true;
   }
