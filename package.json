@@ -1,6 +1,6 @@
 {
   "name": "@lottiefiles/react-lottie-player",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "description": "Lottie web player wrapper for React",
   "main": "./dist/lottie-react.js",
   "module": "./dist/lottie-react.esm.js",

@@ -89,7 +89,7 @@ const defaultOptions = {
   progressiveLoad: true,
 };
 
-export class Player extends React.Component<IPlayerProps, IPlayerState> {
+export class Player extends React.Component<IPlayerProps & React.HTMLAttributes<HTMLDivElement>, IPlayerState> {
   public static async getDerivedStateFromProps(nextProps: any, prevState: any) {
     if (nextProps.background !== prevState.background) {
       return { background: nextProps.background };
@@ -188,7 +188,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
   };
 
   public render() {
-    const { children, loop, style, onBackgroundChange } = this.props;
+    const { children, loop, style, onBackgroundChange, ...HTMLAttributes } = this.props;
     const { animationData, instance, playerState, seeker, debug, background } = this.state;
 
     return (
@@ -203,6 +203,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
             overflow: 'hidden',
             ...style,
           }}
+          {...HTMLAttributes}
         />
         {React.Children.map(children, child => {
           if (React.isValidElement(child)) {

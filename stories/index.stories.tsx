@@ -26,6 +26,7 @@ export const LottiePlayer = () => {
         style={{ height: '300px' }}
         renderer="svg"
         onEvent={onEvent}
+        className="test"
       >
         <Controls
           transparentTheme={true}
