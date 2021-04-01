@@ -70,6 +70,7 @@ export interface IPlayerProps {
   style?: { [key: string]: string | number };
   rendererSettings?: object;
   keepLastFrame?: boolean;
+  className?: string;
 }
 
 interface IPlayerState {
@@ -89,7 +90,7 @@ const defaultOptions = {
   progressiveLoad: true,
 };
 
-export class Player extends React.Component<IPlayerProps & React.HTMLAttributes<HTMLDivElement>, IPlayerState> {
+export class Player extends React.Component<IPlayerProps, IPlayerState> {
   public static async getDerivedStateFromProps(nextProps: any, prevState: any) {
     if (nextProps.background !== prevState.background) {
       return { background: nextProps.background };
@@ -188,7 +189,7 @@ export class Player extends React.Component<IPlayerProps & React.HTMLAttributes<
   };
 
   public render() {
-    const { children, loop, style, onBackgroundChange, ...HTMLAttributes } = this.props;
+    const { children, loop, style, onBackgroundChange, className } = this.props;
     const { animationData, instance, playerState, seeker, debug, background } = this.state;
 
     return (
@@ -203,7 +204,7 @@ export class Player extends React.Component<IPlayerProps & React.HTMLAttributes<
             overflow: 'hidden',
             ...style,
           }}
-          {...HTMLAttributes}
+          className={className}
         />
         {React.Children.map(children, child => {
           if (React.isValidElement(child)) {
