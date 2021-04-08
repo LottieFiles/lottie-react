@@ -193,7 +193,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
     const { animationData, instance, playerState, seeker, debug, background } = this.state;
 
     return (
-      <div>
+      <div className="lf-player-container">
         <div
           id={this.props.id ? this.props.id : 'lottie'}
           ref={el => (this.container = el)}

@@ -65,13 +65,7 @@
 .lf-progress:focus::-ms-fill-upper {
   background: #ccc;
 }
-.deactivated-btn {
-  opacity: 0.5;
-}
-.active-btn {
-  opacity: 1;
-}
-:focus {
+.lf-player-container :focus {
   outline: 0;
 }
 .lf-popover {
@@ -92,39 +86,6 @@
   opacity: 0;
   visibility: hidden;
   transform: translate(0, 0px);
-}
-
-.arrow {
-  position: absolute;
-  z-index: -1;
-  content: '';
-  bottom: -9px;
-  border-style: solid;
-  border-width: 10px 10px 0px 10px;
-}
-
-.left-align,
-.left-align .arrow {
-  left: 0;
-  right: unset;
-}
-
-.right-align,
-.right-align .arrow {
-  right: 0;
-  left: unset;
-}
-
-.frame-number {
-  outline: none;
-  border: 1px #ccc solid;
-  border-radius: 3px;
-  width: 40px;
-  text-align: center;
-  color: #999;
-  font-size: 0.7rem;
-  padding: 0;
-  font-family: inherit;
 }
 
 .lf-player-btn-container {
