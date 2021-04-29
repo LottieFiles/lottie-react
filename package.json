@@ -70,6 +70,7 @@
     "react": "^17.0.2"
   },
   "dependencies": {
+    "@semantic-release/git": "^9.0.0",
     "lottie-web": "^5.7.8"
   },
   "scripts": {
