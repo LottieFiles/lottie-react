@@ -14,7 +14,7 @@ const name = 'ReactLottiePlayer';
 
 export default {
   input: './src/index.ts',
-
+  treeshake: false,
   output: [
     {
       file: pkg.main,
