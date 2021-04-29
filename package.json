@@ -18,6 +18,7 @@
     "@rollup/plugin-typescript": "^8.1.0",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/git": "^9.0.0",
     "@semantic-release/github": "^7.2.1",
     "@semantic-release/npm": "^7.1.1",
     "@semantic-release/release-notes-generator": "^9.0.2",
@@ -70,7 +71,6 @@
     "react": "^17.0.2"
   },
   "dependencies": {
-    "@semantic-release/git": "^9.0.0",
     "lottie-web": "^5.7.8"
   },
   "scripts": {
