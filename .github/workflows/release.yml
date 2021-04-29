@@ -1,9 +1,8 @@
 name: Release
 
-on:  
+on:
   push:
-    tags:
-      - '*'
+    branches: [master, beta]
 
 jobs:
   release:
