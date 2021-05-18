@@ -248,7 +248,18 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
   }
 
   private async createLottie() {
-    const { autoplay, direction, loop, lottieRef, renderer, speed, src, background, rendererSettings } = this.props;
+    const {
+      autoplay,
+      direction,
+      loop,
+      lottieRef,
+      renderer,
+      speed,
+      src,
+      background,
+      rendererSettings,
+      hover,
+    } = this.props;
     const { instance } = this.state;
 
     if (!src || !this.container) {
@@ -320,6 +331,18 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
 
         if (!this.props.keepLastFrame || this.props.loop) {
           this.setSeeker(0);
+        }
+      });
+
+      // Set handlers to auto play animation on hover if enabled
+      this.container.addEventListener('mouseenter', () => {
+        if (hover && this.state.playerState !== PlayerState.Playing) {
+          this.play();
+        }
+      });
+      this.container.addEventListener('mouseleave', () => {
+        if (hover && this.state.playerState === PlayerState.Playing) {
+          this.stop();
         }
       });
 
