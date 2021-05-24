@@ -20,13 +20,14 @@ export const LottiePlayer = () => {
     <div style={{ width: '374px' }}>
       <Player
         src="https://assets1.lottiefiles.com/packages/lf20_ybj0fjlo.json"
-        autoplay
+        hover
         loop
         background="#ffffff"
         style={{ height: '300px' }}
         renderer="svg"
         onEvent={onEvent}
         className="test"
+        keepLastFrame={true}
       >
         <Controls
           transparentTheme={true}

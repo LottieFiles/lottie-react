@@ -337,6 +337,9 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
       // Set handlers to auto play animation on hover if enabled
       this.container.addEventListener('mouseenter', () => {
         if (hover && this.state.playerState !== PlayerState.Playing) {
+          if (this.props.keepLastFrame) {
+            this.stop();
+          }
           this.play();
         }
       });
