@@ -110,7 +110,10 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
 
   constructor(props: IPlayerProps) {
     super(props);
-    window.lottie = lottie;
+
+    if (typeof window !== 'undefined') {
+      window.lottie = lottie;
+    }
     this.state = {
       animationData: null,
       background: 'transparent',
