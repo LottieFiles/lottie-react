@@ -25,6 +25,13 @@ export function parseSrc(src: string | object): string | object {
   return src;
 }
 
+// Necessary so that we can add Lottie to the window afterwards
+declare global {
+  interface Window {
+    lottie: any;
+  }
+}
+
 // Define valid player states
 export enum PlayerState {
   Loading = 'loading',
@@ -103,7 +110,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
 
   constructor(props: IPlayerProps) {
     super(props);
-
+    window.lottie = lottie;
     this.state = {
       animationData: null,
       background: 'transparent',
