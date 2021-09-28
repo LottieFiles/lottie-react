@@ -211,7 +211,7 @@ Start playing animation.
 
 Type: `void`
 
-### `setPlayerDirection(direction: 1 | -1 ) => void`
+### `setDirection(direction: 1 | -1 ) => void`
 
 Animation play direction.
 
@@ -225,7 +225,7 @@ Animation play direction.
 
 Type: `void`
 
-### `setPlayerSpeed(speed?: number) => void`
+### `setSpeed(speed?: number) => void`
 
 Sets animation play speed.
 
