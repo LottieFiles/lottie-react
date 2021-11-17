@@ -72,6 +72,8 @@ Add the element `Player` and set the `src` prop to a URL pointing to a valid Lot
 | `speed`              | Animation speed.                                                       | `number`           | `1`         |
 | `style`              | The style for the container.                                           | `object`           | `undefined` |
 | `src` _(required)_   | Bodymovin JSON data or URL to JSON.                                    | `object` | `string`| `undefined` |
+| `withoutWrapperTag`  | Remove wrapper `div` tag                                               | `boolean`          | `false`     |
+| `className`          | Provide string as className.                                           | `string`           | `undefined` |
 
 ## Get Player instance
 

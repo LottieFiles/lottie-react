@@ -78,6 +78,7 @@ export interface IPlayerProps {
   rendererSettings?: object;
   keepLastFrame?: boolean;
   className?: string;
+  withoutWrapperTag?: boolean;
 }
 
 interface IPlayerState {
@@ -199,11 +200,13 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
   };
 
   public render() {
-    const { children, loop, style, onBackgroundChange, className } = this.props;
+    const { children, loop, style, onBackgroundChange, className, withoutWrapperTag } = this.props;
     const { animationData, instance, playerState, seeker, debug, background } = this.state;
+    const DefaultTag = (tagProp: React.PropsWithChildren<React.ReactNode | React.ReactNode[]>) => React.createElement("div", { className: "lf-player-container" }, tagProp.children);
+    const WrapperTag = withoutWrapperTag ? React.Fragment : DefaultTag;
 
     return (
-      <div className="lf-player-container">
+      <WrapperTag>
         <div
           id={this.props.id ? this.props.id : 'lottie'}
           ref={el => (this.container = el)}
@@ -249,7 +252,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
           }
           return null;
         })}
-      </div>
+      </WrapperTag>
     );
   }
 
