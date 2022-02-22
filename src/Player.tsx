@@ -301,7 +301,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
         renderer,
       });
       if (speed) {
-        lottie.setSpeed(speed);
+        newInstance.setSpeed(speed);
       }
       this.setState({ animationData });
 
