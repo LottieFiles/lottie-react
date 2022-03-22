@@ -1,3 +1,4 @@
+import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import strip from '@rollup/plugin-strip';
@@ -29,7 +30,6 @@ export default {
       name,
     },
   ],
-
   plugins: [
     // Remove debugger statements and console.log calls
     isProduction && strip(),
@@ -42,6 +42,11 @@ export default {
 
     // Convert commonjs modules to ES modules
     commonjs(),
+
+    babel({
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.mjs'],
+      exclude: ['./node_modules/**'],
+    }),
 
     // Use Typescript to transpile code
     // typescript({ lib: ['es5', 'es6', 'dom'], target: 'es5' }),

@@ -48,3 +48,4 @@ dist/
 # Tests
 coverage/
 cypress/react-testing-pages/src/components/lottie-react.js
+.nyc_output
