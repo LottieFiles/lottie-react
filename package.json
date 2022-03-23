@@ -1,6 +1,6 @@
 {
   "name": "@lottiefiles/react-lottie-player",
-  "version": "3.3.0",
+  "version": "3.4.3",
   "description": "Lottie web player wrapper for React",
   "main": "./dist/lottie-react.js",
   "module": "./dist/lottie-react.esm.js",
@@ -10,6 +10,7 @@
   ],
   "devDependencies": {
     "@babel/core": "^7.9.6",
+    "@changesets/cli": "^2.21.1",
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-conventional": "^12.1.1",
     "@rollup/plugin-commonjs": "^11.1.0",
