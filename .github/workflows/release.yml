@@ -51,7 +51,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
       - run: yarn install --frozen-lockfile
-      - run: npm publish --tag beta
+      - run: npm publish --tag beta --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
@@ -67,7 +67,9 @@ jobs:
           registry-url: https://npm.pkg.github.com/
           scope: '@lottiefiles'
       - run: yarn install --frozen-lockfile
-      - run: echo registry=https://npm.pkg.github.com/lottiefiles >> .npmrc
+      run:
+          echo "//npm.pkg.github.com:_authToken=${{ secrets.GITHUB_TOKEN }}" >
+          ~/.npmrc
       - run: npm publish --tag beta
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
