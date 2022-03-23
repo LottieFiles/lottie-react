@@ -97,7 +97,7 @@
     "lint:fix": "eslint  . --ext .ts,.tsx,.js --fix",
     "storybook": "start-storybook -p 9009",
     "build-storybook": "build-storybook",
-    "release": "semantic-release"
+    "version": "yarn changeset version"
   },
   "repository": {
     "type": "git",
