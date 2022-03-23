@@ -2,24 +2,19 @@ name: Release
 
 on:
   push:
-    branches: [master, beta]
+    branches: [develop]
 
 jobs:
-  release:
-    name: Release
-
+  build:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node-version: [12.x]
-
+        node-version: [14.x]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
       - name: Cache NPM
         uses: actions/cache@v2
         env:
@@ -29,29 +24,52 @@ jobs:
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
-
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: 'https://npm.pkg.github.com'
-
       - name: Install dependencies
         run: yarn install
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: Run linting
         run: yarn lint
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: Build project
         run: yarn build
 
-      - name: Release
-        run: yarn release
+  release-npm:
+    needs: build
+    name: Release npm
+    runs-on:  ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
+      - run: yarn install --frozen-lockfile
+      - run: npm publish --tag beta
         env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+    release-gpr:
+      needs: build
+      name: Release npm
+      runs-on:  ubuntu-latest
+      steps:
+        - uses: actions/checkout@v1
+        - uses: actions/setup-node@v1
+          with:
+            node-version: ${{ matrix.node-version }}
+            registry-url: https://registry.npmjs.org/
+            scope: '@lottiefiles'
+        - run: yarn install --frozen-lockfile
+        - run: echo registry=https://npm.pkg.github.com/lottiefiles >> .npmrc
+        - run: npm publish --tag beta
+          env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPMJS_TOKEN }}
