@@ -67,7 +67,7 @@ jobs:
           registry-url: https://npm.pkg.github.com/
           scope: '@lottiefiles'
       - run: yarn install --frozen-lockfile
-      run:
+      - run:
           echo "//npm.pkg.github.com:_authToken=${{ secrets.GITHUB_TOKEN }}" >
           ~/.npmrc
       - run: npm publish --tag beta
