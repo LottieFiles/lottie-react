@@ -57,14 +57,14 @@ jobs:
 
   release-gpr:
     needs: build
-    name: Release npm
+    name: Release gpr
     runs-on:  ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: https://registry.npmjs.org/
+          registry-url: https://npm.pkg.github.com/
           scope: '@lottiefiles'
       - run: yarn install --frozen-lockfile
       - run: echo registry=https://npm.pkg.github.com/lottiefiles >> .npmrc
