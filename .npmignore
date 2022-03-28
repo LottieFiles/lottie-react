@@ -21,3 +21,5 @@ tsconfig.json
 # Docs
 docs/
 examples/
+cypress/
+cypress/react-testing-pages/src/components/lottie-react.js

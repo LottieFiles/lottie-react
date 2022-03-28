@@ -71,10 +71,10 @@ export interface IPlayerProps {
   direction?: PlayerDirection;
   hover?: boolean;
   loop?: boolean | number;
-  renderer?: 'svg' | 'canvas' | 'html';
+  renderer?: any;
   speed?: number;
   src: object | string;
-  style?: { [key: string]: string | number };
+  style?: React.CSSProperties;
   rendererSettings?: object;
   keepLastFrame?: boolean;
   className?: string;
@@ -204,18 +204,26 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
 
     return (
       <div className="lf-player-container">
-        <div
-          id={this.props.id ? this.props.id : 'lottie'}
-          ref={el => (this.container = el)}
-          style={{
-            background,
-            margin: '0 auto',
-            outline: 'none',
-            overflow: 'hidden',
-            ...style,
-          }}
-          className={className}
-        />
+        {this.state.playerState === PlayerState.Error ? (
+          <div className="lf-error">
+            <span aria-label="error-symbol" role="img">
+              ⚠️
+            </span>
+          </div>
+        ) : (
+          <div
+            id={this.props.id ? this.props.id : 'lottie'}
+            ref={el => (this.container = el)}
+            style={{
+              background,
+              margin: '0 auto',
+              outline: 'none',
+              overflow: 'hidden',
+              ...style,
+            }}
+            className={className}
+          ></div>
+        )}
         {React.Children.map(children, child => {
           if (React.isValidElement(child)) {
             return React.cloneElement(child, {
