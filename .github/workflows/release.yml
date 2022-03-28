@@ -2,7 +2,7 @@ name: Release
 
 on:
   push:
-    branches: [tests/cypress-tests]
+    branches: [master, beta]
 
 jobs:
   release:
@@ -43,19 +43,6 @@ jobs:
             cd ./cypress/react-testing-pages/ && yarn
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      # - name: Build project
-      #   continue-on-error: false
-      #   run: yarn run build-tests
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      # - name: Serve example app
-      #   continue-on-error: false
-      #   run: |
-      #     yarn run serve-app
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Run tests
         continue-on-error: false
