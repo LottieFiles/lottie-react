@@ -8,7 +8,7 @@ context("Player component DOM check", () => {
   });
 
   it('Loads an animation on page.', () => {
-    cy.get("#player-one").should("have.length", 2);
+    cy.get("#player-one").should("have.length", 1);
   });
 
   it('Checks that loading with an empty URL displays an error.', function () {
