@@ -79,7 +79,7 @@ jobs:
           ~/.npmrc
       - run: npm publish --tag beta --@lottiefiles:registry=https://npm.pkg.github.com/
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPMJS_TOKEN }}
           GIT_COMMIT: ${{ github.sha }}
