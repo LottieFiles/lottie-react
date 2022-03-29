@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.4.5
+
+### Patch Changes
+
+- 87b8633: changes type for the renderer variable
+
 ## 3.4.3
 
 ### Patch Changes
