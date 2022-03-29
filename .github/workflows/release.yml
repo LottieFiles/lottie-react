@@ -37,6 +37,12 @@ jobs:
         run: yarn lint
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Bump version
+        uses: changesets/action@v1
+        with:
+          version: yarn run version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build project
         run: yarn build
 

@@ -71,7 +71,7 @@ export interface IPlayerProps {
   direction?: PlayerDirection;
   hover?: boolean;
   loop?: boolean | number;
-  renderer?: 'svg' | 'canvas' | 'html';
+  renderer?: any;
   speed?: number;
   src: object | string;
   style?: { [key: string]: string | number };
