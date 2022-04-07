@@ -14,7 +14,7 @@ context("Player properties", () => {
   });
 
   it("Player-two should play at x5 the speed", () => {
-    cy.wait(1000);
+    cy.wait(3000);
     cy.window().then( (win) => {
       if (!win.lottie.getRegisteredAnimations()[1].playSpeed === 5)
         done();
@@ -22,7 +22,7 @@ context("Player properties", () => {
   });
 
   it("Player-three should autoplay and loop", function (done) {
-    cy.wait(1000);
+    cy.wait(3000);
     cy.window().then( (win) => {
       if (!win.lottie.getRegisteredAnimations()[2].isPaused 
       && win.lottie.getRegisteredAnimations()[2].loop)
@@ -32,8 +32,8 @@ context("Player properties", () => {
   });
 
   it("Player-four should play on hover", function (done) {
+    cy.wait(3000);
     cy.get("#player-four").trigger('mouseenter');
-    cy.wait(1000);
     cy.window().then( (win) => {
       if (!win.lottie.getRegisteredAnimations()[3].isPaused)
         done();
