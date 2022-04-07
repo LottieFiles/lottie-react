@@ -8,7 +8,7 @@ context("Player methods", () => {
   });
 
   it("Player-one should have play toggled.", function (done) {
-    cy.wait(1000);
+    cy.wait(3000);
     cy.window().then( (win) => {
       if (!win.lottie.getRegisteredAnimations()[0].isPaused)
         done();
@@ -16,7 +16,7 @@ context("Player methods", () => {
   });
 
   it.skip("Player-two should have loop toggled.", function (done) {
-    cy.wait(1000);
+    cy.wait(3000);
     cy.window().then( (win) => {
       if (!win.lottie.getRegisteredAnimations()[1].loop)
         done();
@@ -24,7 +24,7 @@ context("Player methods", () => {
   });
 
   it("Player-three should play at x5 the speed", function(done) {
-    cy.wait(1000);
+    cy.wait(3000);
     cy.window().then( (win) => {
       if (win.lottie.getRegisteredAnimations()[2].playSpeed === 5)
         done();
@@ -38,7 +38,7 @@ context("Player methods", () => {
   });
 
   it("Player-five should be paused.", function (done) {
-    cy.wait(1000);
+    cy.wait(3000);
     cy.window().then( (win) => {
       if (win.lottie.getRegisteredAnimations()[4].isPaused)
         done();

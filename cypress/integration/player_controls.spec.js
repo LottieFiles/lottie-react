@@ -10,7 +10,7 @@ context("Player controls", () => {
   });
 
   it("clicks on play button and verifies animation is playing", function (done) {
-    cy.wait(2000);
+    cy.wait(3000);
     cy.get("#container-one .lf-player-btn").eq(0).click({force: true});
 
     cy.window().then( (win) => {
@@ -20,7 +20,7 @@ context("Player controls", () => {
   });
 
   it("clicks on pause button and verifies animation is paused", function (done) {
-    cy.wait(2000);
+    cy.wait(3000);
     cy.get("#container-two .lf-player-btn").eq(0).click({force: true});
 
     cy.window().then( (win) => {
@@ -30,7 +30,7 @@ context("Player controls", () => {
   });
 
   it("clicks on stop button and verififes animation is stopped and at frame 0", function (done) {
-    cy.wait(2000);
+    cy.wait(3000);
     cy.get("#container-three .lf-player-btn").eq(1).click({force: true});
 
     cy.window().then( (win) => {
