@@ -10,10 +10,7 @@ stories
 # CI/CD
 .travis.yml
 
-# Source code
-src
-
-# Configs 
+# Configs
 jest.config.js
 rollup.config.js
 tsconfig.json
