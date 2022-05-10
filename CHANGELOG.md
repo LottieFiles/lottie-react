@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.4.6
+
+### Patch Changes
+
+- 8d24ecd: changes type for the renderer variable
+- fixed source-maps
+
 ## 3.4.3
 
 ### Patch Changes
