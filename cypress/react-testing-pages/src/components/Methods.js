@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from 'react';
-import { Player, Controls } from './lottie-react.js';
+import React from 'react';
+import { Player, Controls } from '@lottiefiles/react-lottie-player';
 import './App.css';
 
 class Methods extends React.Component {
@@ -38,7 +38,7 @@ class Methods extends React.Component {
                         }}
                         id="player-one"
                         loop
-                        src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
+                        src={process.env.PUBLIC_URL + '/animation.lottie.json'}
                         style={{ height: '300px', width: '300px' }}>
                         <Controls visible={true} buttons={['play', 'repeat', 'frame', 'debug']} />
                     </Player>
@@ -50,7 +50,7 @@ class Methods extends React.Component {
                         autoplay
                         id="player-two"
                         loop
-                        src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
+                        src={process.env.PUBLIC_URL + '/animation.lottie.json'}
                         style={{ height: '300px', width: '300px' }}>
                         <Controls visible={true} buttons={['play', 'repeat', 'frame', 'debug']} />
                     </Player>
@@ -65,7 +65,7 @@ class Methods extends React.Component {
                         autoplay
                         id="player-three"
                         loop
-                        src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
+                        src={process.env.PUBLIC_URL + '/animation.lottie.json'}
                         style={{ height: '300px', width: '300px' }}>
                         <Controls visible={true} buttons={['play', 'repeat', 'frame', 'debug']} />
                     </Player>
@@ -77,7 +77,7 @@ class Methods extends React.Component {
                         autoplay
                         id="player-four"
                         loop
-                        src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
+                        src={process.env.PUBLIC_URL + '/animation.lottie.json'}
                         style={{ height: '300px', width: '300px' }}>
                         <Controls visible={true} buttons={['play', 'repeat', 'frame', 'debug']} />
                     </Player>
@@ -92,7 +92,7 @@ class Methods extends React.Component {
                         autoplay
                         id="player-five"
                         loop
-                        src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
+                        src={process.env.PUBLIC_URL + '/animation.lottie.json'}
                         style={{ height: '300px', width: '300px' }}>
                         <Controls visible={true} buttons={['play', 'repeat', 'frame', 'debug']} />
                     </Player>

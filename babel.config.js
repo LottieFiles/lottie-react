@@ -1,6 +1,5 @@
-const { CODE_COVERAGE } = process.env;
 const plugins = [];
-if (CODE_COVERAGE === 'true') plugins.push('istanbul');
+if (process.env.NODE_ENV === 'test') plugins.push('istanbul');
 
 module.exports = function(api) {
   api.cache(true);
