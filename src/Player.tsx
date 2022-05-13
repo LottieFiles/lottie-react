@@ -107,6 +107,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
   }
 
   public container: Element | null = null;
+  public unmounted = false;
 
   constructor(props: IPlayerProps) {
     super(props);
@@ -130,10 +131,13 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
   };
 
   public async componentDidMount() {
-    await this.createLottie();
+    if (!this.unmounted) {
+      await this.createLottie();
+    }
   }
 
   public componentWillUnmount() {
+    this.unmounted = true;
     if (this.state.instance) {
       this.state.instance.destroy();
     }

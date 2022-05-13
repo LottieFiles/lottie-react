@@ -1,4 +1,4 @@
-import { Player, Controls } from './lottie-react.js';
+import { Player, Controls } from '@lottiefiles/react-lottie-player';
 import './App.css';
 
 function Load() {
@@ -9,7 +9,7 @@ function Load() {
                     autoplay
                     id="player-one"
                     loop
-                    src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
+                    src={process.env.PUBLIC_URL + '/animation.lottie.json'}
                     style={{ height: '300px', width: '300px' }}>
                     <Controls visible={true} buttons={['play', 'stop', 'repeat', 'frame']} />
                 </Player>
@@ -38,7 +38,7 @@ function Load() {
             <div id="container-four">
                 <Player
                     id="player-four"
-                    src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
+                    src={process.env.PUBLIC_URL + '/animation.lottie.json'}
                     style={{ height: '300px', width: '300px' }}>
                 </Player>
             </div>
