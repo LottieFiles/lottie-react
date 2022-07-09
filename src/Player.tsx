@@ -298,6 +298,10 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
         animationData = await fetchResult.json();
       }
 
+      if (this.unmounted) {
+        return;
+      }
+
       // Clear previous animation, if any
       if (instance) {
         instance.destroy();
