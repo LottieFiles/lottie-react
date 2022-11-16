@@ -5,7 +5,7 @@ import './Styles.css';
 import * as React from 'react';
 
 import { ColorPicker } from './ColorPicker';
-import { PlayerState } from './Player';
+import { PlayerEvent, PlayerState } from './Player';
 import { Popover } from './Popover';
 import { Seeker } from './Seeker';
 
@@ -83,6 +83,7 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
         {showPlayButton && (
           <div
             role="button"
+            aria-label={playerState === PlayerState.Playing ? PlayerEvent.Pause : PlayerEvent.Play}
             tabIndex={0}
             onClick={() => {
               if (playerState === PlayerState.Playing) {
@@ -125,6 +126,7 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
           <div
             tabIndex={0}
             role="button"
+            aria-label={PlayerEvent.Stop}
             onClick={() => stop && stop()}
             onKeyDown={() => stop && stop()}
             className={playerState === PlayerState.Stopped ? 'lf-player-btn active' : 'lf-player-btn'}
@@ -184,6 +186,7 @@ export class Controls extends React.Component<IControlProps, { mouseDown: boolea
         {showRepeatButton && (
           <div
             role="button"
+            aria-label={PlayerEvent.Loop}
             tabIndex={0}
             onClick={() => {
               if (instance && setLoop) {
