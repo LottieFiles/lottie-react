@@ -85,6 +85,7 @@ export class Seeker extends React.Component<ISeekerProps> {
           id="track"
           className="lf-progress"
           name="progress"
+          aria-label="progress"
           type="range"
           min="0"
           max="100"

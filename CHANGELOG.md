@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.4.9
+
+### Patch Changes
+
+- 730c3b2: add aria-label to Controls
+- 32e0728: fix double animation with react 18 strict mode
+- cd94951: chore: version bump
+
 ## 3.4.6
 
 ### Patch Changes
