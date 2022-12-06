@@ -1,6 +1,8 @@
 import lottie, { AnimationItem } from 'lottie-web';
 import * as React from 'react';
 
+import { LOTTIE_PLAYER_VERSION, LOTTIE_WEB_VERSION } from './versions';
+
 /**
  * Parse a resource into a JSON object or a URL string
  */
@@ -55,6 +57,11 @@ export enum PlayerEvent {
   Complete = 'complete',
   Frame = 'frame',
 }
+
+export type Versions = {
+  lottieWebVersion: string;
+  lottiePlayerVersion: string;
+};
 
 export type PlayerDirection = -1 | 1;
 
@@ -123,6 +130,16 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
       instance: null,
       playerState: PlayerState.Loading,
       seeker: 0,
+    };
+  }
+
+  /**
+   * Returns the lottie-web version and this player's version
+   */
+  public getVersions(): Versions {
+    return {
+      lottieWebVersion: LOTTIE_WEB_VERSION,
+      lottiePlayerVersion: LOTTIE_PLAYER_VERSION,
     };
   }
 

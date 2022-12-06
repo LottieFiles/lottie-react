@@ -82,10 +82,12 @@
     "react": "16 - 18"
   },
   "dependencies": {
-    "lottie-web": "^5.7.8"
+    "lottie-web": "^5.10.0"
   },
   "scripts": {
+    "predev": "node -p \"'export const LOTTIE_PLAYER_VERSION = ' + JSON.stringify(require('./package.json').version) + '; \\n' + 'export const LOTTIE_WEB_VERSION = ' + JSON.stringify(require('./package.json').dependencies['lottie-web']) + ';'\" > src/versions.ts",
     "dev": "rollup -c -w",
+    "prebuild": "node -p \"'export const LOTTIE_PLAYER_VERSION = ' + JSON.stringify(require('./package.json').version) + '; \\n' + 'export const LOTTIE_WEB_VERSION = ' + JSON.stringify(require('./package.json').dependencies['lottie-web']) + ';'\" > src/versions.ts",
     "build": "rollup -c",
     "prepublishOnly": "yarn build",
     "run-tests": "while ! nc -z localhost 8080 ; do sleep 1 ; done && yarn run start-cypress && npx nyc report --reporter=text-summary",
