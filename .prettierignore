@@ -4,3 +4,5 @@ package-lock.json
 yarn.lock
 cypress/
 cypress/react-testing-pages/src/components/lottie-react.js
+stories/
+src/versions.d.ts
