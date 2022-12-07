@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.5.0
+
+### Minor Changes
+
+- 978552b: added getVersions(), updated lottie-web
+
 ## 3.4.9
 
 ### Patch Changes
