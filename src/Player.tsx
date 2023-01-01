@@ -332,6 +332,9 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
       if (speed) {
         newInstance.setSpeed(speed);
       }
+      if (direction) {
+        newInstance.setDirection(direction);
+      }
       this.setState({ animationData });
 
       // Handle new frame event
