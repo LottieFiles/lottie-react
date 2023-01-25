@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.5.1
+
+### Patch Changes
+
+- f807fde: re-arranged events to fire when internal state is set
+
 ## 3.5.0
 
 ### Minor Changes
