@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.5.2
+
+### Patch Changes
+
+- d71a178: added instanceloaded event
+
 ## 3.5.1
 
 ### Patch Changes
