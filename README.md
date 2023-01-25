@@ -8,7 +8,7 @@ This is a React component for the Lottie Web Player
 
 ## Documentation
 
-- [View documentation](https://github.com/LottieFiles/lottie-react)
+- [View documentation](https://docs.lottiefiles.com/lottie-player/components/lottie-react)
 
 #### In Javascript or TypeScript:
 
