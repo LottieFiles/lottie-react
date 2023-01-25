@@ -1,7 +1,7 @@
 import lottie, { AnimationItem } from 'lottie-web';
 import * as React from 'react';
 
-import { LOTTIE_PLAYER_VERSION, LOTTIE_WEB_VERSION } from './versions';
+import { LOTTIE_WEB_VERSION, REACT_LOTTIE_PLAYER_VERSION } from './versions';
 
 /**
  * Parse a resource into a JSON object or a URL string
@@ -139,7 +139,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
   public getVersions(): Versions {
     return {
       lottieWebVersion: LOTTIE_WEB_VERSION,
-      lottiePlayerVersion: LOTTIE_PLAYER_VERSION,
+      lottiePlayerVersion: REACT_LOTTIE_PLAYER_VERSION,
     };
   }
 
@@ -311,8 +311,17 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
       let animationData = parseSrc(src);
 
       if (typeof animationData === 'string') {
-        const fetchResult = await fetch(animationData as string);
-        animationData = await fetchResult.json();
+        const fetchResult = await fetch(animationData as string).catch(() => {
+          this.setState({ playerState: PlayerState.Error });
+          this.triggerEvent(PlayerEvent.Error);
+          throw new Error('Error @LottieFiles/lottie-react: Animation data could not be fetched.');
+        });
+
+        animationData = await fetchResult.json().catch(() => {
+          this.setState({ playerState: PlayerState.Error });
+          this.triggerEvent(PlayerEvent.Error);
+          throw new Error('Error @LottieFiles/lottie-react: Animation data could not be fetched.');
+        });
       }
 
       // Clear previous animation, if any
@@ -334,83 +343,88 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
       }
       this.setState({ animationData });
 
-      // Handle new frame event
-      newInstance.addEventListener('enterFrame', () => {
-        this.triggerEvent(PlayerEvent.Frame);
-
-        this.setState({
-          seeker: Math.floor((newInstance as any).currentFrame),
-        });
-      });
-
-      // Handle lottie-web ready event
-      newInstance.addEventListener('DOMLoaded', () => {
-        this.triggerEvent(PlayerEvent.Load);
-      });
-
-      // Handle animation data load complete
-      newInstance.addEventListener('data_ready', () => {
-        this.triggerEvent(PlayerEvent.Ready);
-      });
-
-      // Set error state when animation load fail event triggers
-      newInstance.addEventListener('data_failed', () => {
-        this.setState({ playerState: PlayerState.Error });
-      });
-
-      // Handle new loop event
-      newInstance.addEventListener('loopComplete', () => {
-        this.triggerEvent(PlayerEvent.Loop);
-      });
-
-      // Set state to paused if loop is off and anim has completed
-      newInstance.addEventListener('complete', () => {
-        this.triggerEvent(PlayerEvent.Complete);
-        this.setState({ playerState: PlayerState.Paused });
-
-        if (!this.props.keepLastFrame || this.props.loop) {
-          this.setSeeker(0);
-        }
-      });
-
-      // Set handlers to auto play animation on hover if enabled
-      this.container.addEventListener('mouseenter', () => {
-        if (hover && this.state.playerState !== PlayerState.Playing) {
-          if (this.props.keepLastFrame) {
-            this.stop();
-          }
-          this.play();
-        }
-      });
-      this.container.addEventListener('mouseleave', () => {
-        if (hover && this.state.playerState === PlayerState.Playing) {
-          this.stop();
-        }
-      });
-
-      // Set initial playback speed and direction
-      if (speed) {
-        this.setPlayerSpeed(speed);
-      }
-
-      if (direction) {
-        this.setPlayerDirection(direction);
-      }
-
-      if (background) {
-        this.setState({ background });
-      }
-
       this.setState({ instance: newInstance }, () => {
         if (typeof lottieRef === 'function') {
           lottieRef(newInstance);
         }
-        if (autoplay) {
-          this.play();
+
+        // Handle new frame event
+        newInstance.addEventListener('enterFrame', () => {
+          this.triggerEvent(PlayerEvent.Frame);
+
+          this.setState({
+            seeker: Math.floor((newInstance as any).currentFrame),
+          });
+        });
+
+        // Handle lottie-web ready event
+        newInstance.addEventListener('DOMLoaded', () => {
+          this.triggerEvent(PlayerEvent.Load);
+
+          if (autoplay) {
+            this.play();
+          }
+        });
+
+        // Handle animation data load complete
+        newInstance.addEventListener('data_ready', () => {
+          this.triggerEvent(PlayerEvent.Ready);
+        });
+
+        // Set error state when animation load fail event triggers
+        newInstance.addEventListener('data_failed', () => {
+          this.setState({ playerState: PlayerState.Error });
+          this.triggerEvent(PlayerEvent.Error);
+        });
+
+        // Handle new loop event
+        newInstance.addEventListener('loopComplete', () => {
+          this.triggerEvent(PlayerEvent.Loop);
+        });
+
+        // Set state to paused if loop is off and anim has completed
+        newInstance.addEventListener('complete', () => {
+          this.triggerEvent(PlayerEvent.Complete);
+          this.setState({ playerState: PlayerState.Paused });
+
+          if (!this.props.keepLastFrame || this.props.loop) {
+            this.setSeeker(0);
+          }
+        });
+
+        // Set handlers to auto play animation on hover if enabled
+        if (this.container) {
+          this.container.addEventListener('mouseenter', () => {
+            if (hover && this.state.playerState !== PlayerState.Playing) {
+              if (this.props.keepLastFrame) {
+                this.stop();
+              }
+              this.play();
+            }
+          });
+          this.container.addEventListener('mouseleave', () => {
+            if (hover && this.state.playerState === PlayerState.Playing) {
+              this.stop();
+            }
+          });
+        }
+
+        // Set initial playback speed and direction
+        if (speed) {
+          this.setPlayerSpeed(speed);
+        }
+
+        if (direction) {
+          this.setPlayerDirection(direction);
+        }
+
+        if (background) {
+          this.setState({ background });
         }
       });
     } catch (e) {
       this.setState({ playerState: PlayerState.Error });
+      this.triggerEvent(PlayerEvent.Error);
     }
   }
 
