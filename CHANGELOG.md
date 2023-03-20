@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.5.3
+
+### Patch Changes
+
+- bumped lottie-web
+
 ## 3.5.2
 
 ### Patch Changes
