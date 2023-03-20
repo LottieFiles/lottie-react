@@ -247,9 +247,9 @@ Stops animation play.
 
 Type: `void`
 
-### `setSeeker(frame: number | string, play: boolean) => void`
+### `setSeeker(frame: number, play: boolean) => void`
 
-Seek to a given frame. Frame value can be a number or a percent string (e.g. 50%).
+Seek to a given frame.
 
 #### Returns
 
