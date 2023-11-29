@@ -1,4 +1,5 @@
-import lottie, { AnimationItem } from 'lottie-web';
+import type { AnimationItem } from 'lottie-web';
+import lottie from "lottie-web/build/player/lottie_light.min.js";
 import * as React from 'react';
 
 import { LOTTIE_WEB_VERSION, REACT_LOTTIE_PLAYER_VERSION } from './versions';
