@@ -65,9 +65,6 @@
 .lf-progress:focus::-ms-fill-upper {
   background: #ccc;
 }
-.lf-player-container :focus {
-  outline: 0;
-}
 .lf-popover {
   position: relative;
 }

@@ -225,7 +225,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
     const { animationData, instance, playerState, seeker, debug, background } = this.state;
 
     return (
-      <div className="lf-player-container">
+      <>
         {this.state.playerState === PlayerState.Error ? (
           <div className="lf-error">
             <span aria-label="error-symbol" role="img">
@@ -279,7 +279,7 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
           }
           return null;
         })}
-      </div>
+      </>
     );
   }
 
