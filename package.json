@@ -82,7 +82,7 @@
     "react": "16 - 18"
   },
   "dependencies": {
-    "lottie-web": "^5.10.2"
+    "lottie-web": "^5.12.2"
   },
   "scripts": {
     "predev": "node -p \"'export const REACT_LOTTIE_PLAYER_VERSION = ' + JSON.stringify(require('./package.json').version) + '; \\n' + 'export const LOTTIE_WEB_VERSION = ' + JSON.stringify(require('./package.json').dependencies['lottie-web']) + ';'\" > src/versions.ts",
