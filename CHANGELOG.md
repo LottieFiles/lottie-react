@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.5.4
+
+### Patch Changes
+
+- b40ce3d: chore: 🤖 upgrade lottie-web v5.12.2
+
 ## 3.5.3
 
 ### Patch Changes
