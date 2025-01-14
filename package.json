@@ -58,9 +58,9 @@
     "jest": "^26.0.1",
     "lint-staged": ">=10",
     "prettier": "^1.19.1",
-    "react": "^18.1.0",
+    "react": "^19.0.0",
     "react-docgen-typescript-loader": "^3.7.2",
-    "react-dom": "^18.1.0",
+    "react-dom": "^19.0.0",
     "react-scripts": "^3.4.1",
     "rollup": "^2.9.1",
     "rollup-plugin-filesize": "^9.0.0",
@@ -79,7 +79,7 @@
     "webpack": "^4.43.0"
   },
   "peerDependencies": {
-    "react": "16 - 18"
+    "react": "16 - 19"
   },
   "dependencies": {
     "lottie-web": "^5.12.2"
