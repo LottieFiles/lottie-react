@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.6.0
+
+### Minor Changes
+
+- 0589acd: chore: 🤖 upgrade React to v19.0.0
+
 ## 3.5.4
 
 ### Patch Changes
