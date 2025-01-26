@@ -325,6 +325,10 @@ export class Player extends React.Component<IPlayerProps, IPlayerState> {
         });
       }
 
+      if (this.unmounted) {
+        return;
+      }
+
       // Clear previous animation, if any
       if (instance) {
         instance.destroy();
