@@ -1,4 +1,13 @@
-## LottiePlayer React Component
+> [!IMPORTANT]
+> **This package (`@lottiefiles/react-lottie-player`) is deprecated and no longer maintained.**
+> Please use [`@lottiefiles/dotlottie-react`](https://npmjs.com/package/@lottiefiles/dotlottie-react) instead.
+>
+> - npm: https://npmjs.com/package/@lottiefiles/dotlottie-react
+> - GitHub: https://github.com/lottiefiles/dotlottie-web
+
+---
+
+## LottiePlayer React Component (Deprecated)
 
 This is a React component for the Lottie Web Player
 
